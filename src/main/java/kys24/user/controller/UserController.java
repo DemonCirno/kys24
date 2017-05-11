@@ -54,9 +54,9 @@ public class UserController {
 		return map;
 	}
 	//删除用户
-	@RequestMapping(path="/delect/{userId}",method = RequestMethod.POST)
+	@RequestMapping(path="/users/{userId}",method = RequestMethod.DELETE)
 	@ResponseBody
-	public Map<String,Integer> delect(@PathVariable("userId") Integer userId){
+	public Map<String,Integer> delete(@PathVariable("userId") Integer userId){
 		Map<String,Integer> map = new HashMap<>();
 		if(userService.delectByid(userId)){
 			map.put("upte", 1);
@@ -66,9 +66,9 @@ public class UserController {
 		return map;
 	}
 	//发短信
-	@RequestMapping(path="/message",method = RequestMethod.POST)
+	@RequestMapping(path="/message/{userPhone}",method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,String> message(String userPhone){
+	public Map<String,String> message(@PathVariable("userPhone") String userPhone){
 		Map<String,String> map = new HashMap<>();
 		String newnum = YUUtils.getMessageStatus(userPhone);
 		if(newnum.equals("0")){
@@ -117,24 +117,24 @@ public class UserController {
 		return map;
 	}
 	//根据id查找用户
-	@RequestMapping(path="/selectbyid",method = RequestMethod.POST)
+	@RequestMapping(path="/users/{userId}",method = RequestMethod.GET)
 	@ResponseBody
-	public User selectById(Integer userId){
+	public User selectById(@PathVariable("userId") Integer userId){
 		User user = userService.selectById(userId);
 		return user;
 	}
 	//根据收货地址查询用户
-	@RequestMapping(path="/selectbyad",method = RequestMethod.POST)
+	@RequestMapping(path="/users/address/{orderAddress}",method = RequestMethod.GET)
 	@ResponseBody
-	public List<User> selectByaddress(String orderAddress){
+	public List<User> selectByaddress(@PathVariable("orderAddress") String orderAddress){
 		List<User> list = userService.findByOrderAddress(orderAddress);
 		return list;
 	}
 	//根据时间来查找用户
-	@RequestMapping(path="/selectbytime",method = RequestMethod.POST)
+	@RequestMapping(path="/selectbytime",method = RequestMethod.GET)
 	@ResponseBody
 	public List<User> selectBytime(String date1,String date2){
-		Map<String,String> map = new HashMap<String,String>();
+		Map<String,String> map = new HashMap<>();
 		map.put("start", date1);
 		map.put("end", date2);
 		List<User> list = userService.findByCreateTime(map);
@@ -142,7 +142,7 @@ public class UserController {
 	}
 
 	//查找所有用户
-	@RequestMapping(path="/selectAllUser",method = RequestMethod.GET)
+	@RequestMapping(path="/users",method = RequestMethod.GET)
 	public @ResponseBody List<User> selectAllUser(){
 		return userService.selectAllUser();
 	}

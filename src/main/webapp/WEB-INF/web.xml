@@ -20,6 +20,18 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <!--
+          配置 org.springframework.web.filter.HiddenHttpMethodFilter：
+          可以把 POST 请求转换为 DELETE 或 POST 请求
+ -->
+  <filter>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HiddenHttpMethodFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   <listener>
     <description>spring监听器</description>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -30,15 +42,16 @@
   </listener>
   <!-- spring mvc servlet -->
   <servlet>
-    <servlet-name>springmvc-servlet-rest</servlet-name>
+    <servlet-name>springmvc</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring-mvc.xml</param-value>
     </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>springmvc-servlet-rest</servlet-name>
+    <servlet-name>springmvc</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
