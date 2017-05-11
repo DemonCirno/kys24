@@ -3,6 +3,7 @@ package kys24.user.dao;
 import kys24.user.model.User;
 import java.util.List;
 import java.util.Map;
+import kys24.user.utils.Page;
 
 public interface UserMapper {
 
@@ -22,13 +23,19 @@ public interface UserMapper {
     User selectByuserPhone(String userPhone);
 
     //根据时间查询用户
-    List<User> selectBycreatetime(Map<String, String> map);
+    List<User> selectBycreatetime(Map<String, Object> map);
+    Integer selectBytime(Map<String, Object> map);
 
     //根据地址查询用户
-    List<User> selectByorderaddress(String orderAddress);
+    List<User> selectByorderaddress(Map<String, Object> map);
+    Integer selectByaddress(String orderAddress);
 
-    //查找所有用户
-    List<User> selectAllUser();
+
+    //按分页查找所有用户
+    List<User> selectAllUser(Page page);
+
+    //查找用户总数
+    Integer selectUsernum();
 
 
 }

@@ -1,10 +1,13 @@
 package kys24.user.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import kys24.user.model.User;
 import kys24.user.service.IUserService;
+import kys24.user.utils.Page;
+import kys24.user.utils.PageUtil;
 import kys24.user.utils.YUUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -107,15 +110,18 @@ public class UserController {
 	//个人中心修改密码
 	@RequestMapping(path="/update_2",method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Integer> updateByword(Integer userId,String newPassword){
+	public Map<String,Integer> updateByword(Integer userId,String Password){
 		Map<String,Integer> map = new HashMap<>();
-		if(userService.updateByps(userId, newPassword)){
-			map.put("upte", 1);
+		User user = userService.selectById(userId);
+		String oldPassword = user.getUserPassword();
+		if(Password==oldPassword){
+			map.put("upte",1);
 		}else{
 			map.put("upte", 0);
 		}
 		return map;
 	}
+
 	//根据id查找用户
 	@RequestMapping(path="/users/{userId}",method = RequestMethod.GET)
 	@ResponseBody
@@ -124,26 +130,42 @@ public class UserController {
 		return user;
 	}
 	//根据收货地址查询用户
-	@RequestMapping(path="/users/address/{orderAddress}",method = RequestMethod.GET)
+	@RequestMapping(path="/users/address",method = RequestMethod.POST)
 	@ResponseBody
-	public List<User> selectByaddress(@PathVariable("orderAddress") String orderAddress){
-		List<User> list = userService.findByOrderAddress(orderAddress);
+	public List<User> selectByaddress(String orderAddress,Integer currentPage){
+		Page page = PageUtil.createPage(10, userService.findByAddress(orderAddress),currentPage);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("orderAddress",orderAddress);
+		map.put("beginIndex",page.getCurrentPage());
+		map.put("everyPage",page.getEveryPage());
+		List<User> list = userService.findByOrderAddress(map);
 		return list;
 	}
+
 	//根据时间来查找用户
-	@RequestMapping(path="/selectbytime",method = RequestMethod.GET)
+	@RequestMapping(path="/users/time",method = RequestMethod.POST)
 	@ResponseBody
-	public List<User> selectBytime(String date1,String date2){
-		Map<String,String> map = new HashMap<>();
-		map.put("start", date1);
-		map.put("end", date2);
+	public List<User> selectBytime(String date1,String date2,Integer currentPage){
+		Map<String,String> timemap = new HashMap<String,String>();
+		timemap.put("start", date1);
+		timemap.put("end", date2);
+		Page page = PageUtil.createPage(10,userService.findByTime(timemap),currentPage);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start",date1);
+		map.put("end",date2);
+		map.put("beginIndex",page.getCurrentPage());
+		map.put("everyPage",page.getEveryPage());
 		List<User> list = userService.findByCreateTime(map);
 		return list;
 	}
 
-	//查找所有用户
-	@RequestMapping(path="/users",method = RequestMethod.GET)
-	public @ResponseBody List<User> selectAllUser(){
-		return userService.selectAllUser();
+	//查找所有用户(分页显示)
+	@RequestMapping(path="/users/page/{currentPage}",method = RequestMethod.GET)
+	@ResponseBody
+	public List<User> selectAllUser(@PathVariable("currentPage") Integer currentPage){
+		Page page = PageUtil.createPage(10,userService.selectUsernum(),currentPage);
+		List<User> list = userService.selectAllUser(page);
+		return list;
 	}
+
 }

@@ -34,22 +34,47 @@
     *
     FROM tb_user
     WHERE create_time BETWEEN #{start} and #{end}
+    limit #{beginIndex,jdbcType=INTEGER},#{everyPage,jdbcType=INTEGER}
   </select>
+
+    <select id="selectBytime" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+        SELECT count(*)
+        FROM tb_user
+        WHERE create_time BETWEEN #{start} and #{end}
+    </select>
   <!-- 根据地址查询用户 -->
-  <select id="selectByorderaddress" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="selectByorderaddress" resultMap="BaseResultMap" parameterType="java.util.HashMap">
     SELECT *
     FROM tb_order,tb_user
     WHERE order_address like CONCAT(CONCAT('%',#{orderAddress}),'%')
-    and tb_user.user_id = tb_order.user_id;
+    and tb_user.user_id = tb_order.user_id
+    limit #{beginIndex,jdbcType=INTEGER},#{everyPage,jdbcType=INTEGER}
   </select>
-  <!-- 查找所有用戶 -->
-  <select id="selectAllUser" resultMap="BaseResultMap">
-    select * from tb_user
+
+    <select id="selectByaddress" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT count(*)
+        FROM tb_order,tb_user
+        WHERE order_address like CONCAT(CONCAT('%',#{orderAddress}),'%')
+        and tb_user.user_id = tb_order.user_id;
+    </select>
+
+  <!-- 查找用戶总数 -->
+  <select id="selectUsernum" resultType="java.lang.Integer">
+  	select count(*) from tb_user
   </select>
+
+    <!--按照分页查找用户-->
+    <select id="selectAllUser" resultMap="BaseResultMap" parameterType="kys24.user.utils.Page">
+  	select *
+  	from tb_user
+  	limit #{beginIndex,jdbcType=INTEGER},#{everyPage,jdbcType=INTEGER}
+    </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="kys24.user.model.User" >
     insert into tb_user (user_id, user_name, user_password,
     user_phone, user_address, token,
@@ -151,6 +176,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="kys24.user.model.User" >
     update tb_user
     set user_name = #{userName,jdbcType=VARCHAR},
