@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kys24.order.dao.OrderitemMapper">
-  <resultMap id="BaseResultMap" type="kys24.order.model.Orderitem">
+<mapper namespace="kys24.order.dao.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="kys24.order.model.OrderItem">
     <id column="orderitem_id" jdbcType="INTEGER" property="orderitemId" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="commodity_id" jdbcType="INTEGER" property="commodityId" />
@@ -23,7 +23,7 @@
     delete from tb_orderitem
     where orderitem_id = #{orderitemId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="kys24.order.model.Orderitem">
+  <insert id="insert" parameterType="kys24.order.model.OrderItem">
     insert into tb_orderitem (orderitem_id, order_id, commodity_id, 
       commodity_price, count, create_time, 
       update_time)
@@ -31,7 +31,7 @@
       #{commodityPrice,jdbcType=REAL}, #{count,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="kys24.order.model.Orderitem">
+  <insert id="insertSelective" parameterType="kys24.order.model.OrderItem">
     insert into tb_orderitem
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderitemId != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="kys24.order.model.Orderitem">
+  <update id="updateByPrimaryKeySelective" parameterType="kys24.order.model.OrderItem">
     update tb_orderitem
     <set>
       <if test="orderId != null">
@@ -104,7 +104,7 @@
     </set>
     where orderitem_id = #{orderitemId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="kys24.order.model.Orderitem">
+  <update id="updateByPrimaryKey" parameterType="kys24.order.model.OrderItem">
     update tb_orderitem
     set order_id = #{orderId,jdbcType=VARCHAR},
       commodity_id = #{commodityId,jdbcType=INTEGER},

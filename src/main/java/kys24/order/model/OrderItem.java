@@ -2,7 +2,7 @@ package kys24.order.model;
 
 import java.util.Date;
 
-public class Orderitem {
+public class OrderItem {
     private Integer orderitemId;
 
     private String orderId;

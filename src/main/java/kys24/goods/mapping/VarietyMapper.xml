@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kys24.goods.dao.VarietyDao">
+  <resultMap id="BaseResultMap" type="kys24.goods.entity.Variety">
+    <id column="variety_id" jdbcType="INTEGER" property="varietyId" />
+    <result column="variety_name" jdbcType="VARCHAR" property="varietyName" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    variety_id, variety_name, parent_id, type, create_time, update_time
+  </sql>
+  <select id="queryAllVariety" resultMap="BaseResultMap">
+    SELECT *
+    FROM tb_variety
+    ORDER BY variety_id ASC;
+  </select>
+  <insert id="insertVariety" parameterType="kys24.goods.entity.Variety">
+    INSERT tb_variety VALUES (#{varietyId}, #{varietyName}, #{parentId}, #{type},
+    current_timestamp, current_timestamp)
+  </insert>
+  <update id="updateVariety" parameterType="kys24.goods.entity.Variety">
+    UPDATE tb_variety
+    SET variety_name = #{varietyName},
+    parent_id    = #{parentId},
+    type         = #{type},
+    update_time  = current_timestamp
+    WHERE variety_id = #{varietyId};
+  </update>
+  <delete id="deleteVariety">
+    DELETE FROM tb_variety
+    WHERE variety_id = #{varietyId};
+  </delete>
+</mapper>

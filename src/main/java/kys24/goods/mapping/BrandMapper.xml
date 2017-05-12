@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kys24.goods.dao.BrandDao">
+  <resultMap id="BaseResultMap" type="kys24.goods.entity.Brand">
+    <id column="brandID" jdbcType="INTEGER" property="brandid" />
+    <result column="varietyID" jdbcType="INTEGER" property="varietyid" />
+    <result column="brandname" jdbcType="VARCHAR" property="brandname" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    brandID, varietyID, brandname, create_time, update_time
+  </sql>
+  <select id="queryBrandList" resultType="kys24.goods.entity.Brand">
+    SELECT * FROM tb_brand
+    ORDER BY brandid ASC ;
+  </select>
+  <insert id="insertBrand" parameterType="kys24.goods.entity.Brand">
+   INSERT tb_brand(varietyid,brandname,createtime,updatetime)
+   VALUES (#{varietyId},#{brandName},current_timestamp,current_timestamp);
+  </insert>
+  <update id="updateBrand" parameterType="kys24.goods.entity.Brand">
+    UPDATE tb_brand
+    SET
+    varietyid = #{varietyId},
+    brandname = #{brandName},
+    update_time = current_timestamp()
+    WHERE brandid = #{brandId};
+  </update>
+  <delete id="deleteBrand">
+    DELETE FROM tb_brand WHERE brandid = #{brandId};
+  </delete>
+</mapper>

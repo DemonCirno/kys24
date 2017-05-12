@@ -132,20 +132,24 @@ public class UserController {
 	//根据收货地址查询用户
 	@RequestMapping(path="/users/address",method = RequestMethod.POST)
 	@ResponseBody
-	public List<User> selectByaddress(String orderAddress,Integer currentPage){
+	public List selectByaddress(String orderAddress,Integer currentPage){
+		List result = new ArrayList();
 		Page page = PageUtil.createPage(10, userService.findByAddress(orderAddress),currentPage);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("orderAddress",orderAddress);
 		map.put("beginIndex",page.getCurrentPage());
 		map.put("everyPage",page.getEveryPage());
 		List<User> list = userService.findByOrderAddress(map);
-		return list;
+		result.add(list);
+		result.add(page);
+		return result;
 	}
 
 	//根据时间来查找用户
 	@RequestMapping(path="/users/time",method = RequestMethod.POST)
 	@ResponseBody
-	public List<User> selectBytime(String date1,String date2,Integer currentPage){
+	public List selectBytime(String date1,String date2,Integer currentPage){
+		List result = new ArrayList();
 		Map<String,String> timemap = new HashMap<String,String>();
 		timemap.put("start", date1);
 		timemap.put("end", date2);
@@ -156,16 +160,21 @@ public class UserController {
 		map.put("beginIndex",page.getCurrentPage());
 		map.put("everyPage",page.getEveryPage());
 		List<User> list = userService.findByCreateTime(map);
-		return list;
+		result.add(list);
+		result.add(page);
+		return result;
 	}
 
 	//查找所有用户(分页显示)
 	@RequestMapping(path="/users/page/{currentPage}",method = RequestMethod.GET)
 	@ResponseBody
-	public List<User> selectAllUser(@PathVariable("currentPage") Integer currentPage){
+	public List selectAllUser(@PathVariable("currentPage") Integer currentPage){
+		List result = new ArrayList();
 		Page page = PageUtil.createPage(10,userService.selectUsernum(),currentPage);
 		List<User> list = userService.selectAllUser(page);
-		return list;
+		result.add(list);
+		result.add(page);
+		return result;
 	}
 
 }

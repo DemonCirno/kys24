@@ -27,13 +27,14 @@ public class TestUser {
 	}
 	@Test
 	public void test1(){
-		User user = new User();
-		user.setUserId(166);
-		user.setUserName("王玉");
-		user.setUserPassword("123456789");
-		boolean count = userservice.addUser(user);
-		if(count){
-			System.out.println("注册成功");
+		for(int i=0;i<100;i++){
+			User user = new User();
+			user.setUserName("王玉");
+			user.setUserPassword("123456789");
+			boolean count = userservice.addUser(user);
+			if (count) {
+				System.out.println("注册成功");
+			}
 		}
 	}
 	@Test
