@@ -57,7 +57,7 @@ public class UserController {
 		return map;
 	}
 	//删除用户
-	@RequestMapping(path="/users/{userId}",method = RequestMethod.DELETE)
+	@RequestMapping(path="/users/delete/{userId}",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Integer> delete(@PathVariable("userId") Integer userId){
 		Map<String,Integer> map = new HashMap<>();
@@ -176,5 +176,4 @@ public class UserController {
 		result.add(page);
 		return result;
 	}
-
 }
