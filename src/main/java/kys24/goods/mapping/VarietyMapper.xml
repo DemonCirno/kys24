@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kys24.goods.dao.VarietyDao">
-  <resultMap id="BaseResultMap" type="kys24.goods.entity.Variety">
+<mapper namespace="kys24.goods.dao.VarietyMapper">
+  <resultMap id="BaseResultMap" type="kys24.goods.model.Variety">
     <id column="variety_id" jdbcType="INTEGER" property="varietyId" />
     <result column="variety_name" jdbcType="VARCHAR" property="varietyName" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
@@ -12,25 +12,95 @@
   <sql id="Base_Column_List">
     variety_id, variety_name, parent_id, type, create_time, update_time
   </sql>
-  <select id="queryAllVariety" resultMap="BaseResultMap">
-    SELECT *
-    FROM tb_variety
-    ORDER BY variety_id ASC;
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_variety
+    where variety_id = #{varietyId,jdbcType=INTEGER}
   </select>
-  <insert id="insertVariety" parameterType="kys24.goods.entity.Variety">
-    INSERT tb_variety VALUES (#{varietyId}, #{varietyName}, #{parentId}, #{type},
-    current_timestamp, current_timestamp)
-  </insert>
-  <update id="updateVariety" parameterType="kys24.goods.entity.Variety">
-    UPDATE tb_variety
-    SET variety_name = #{varietyName},
-    parent_id    = #{parentId},
-    type         = #{type},
-    update_time  = current_timestamp
-    WHERE variety_id = #{varietyId};
-  </update>
-  <delete id="deleteVariety">
-    DELETE FROM tb_variety
-    WHERE variety_id = #{varietyId};
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_variety
+    where variety_id = #{varietyId,jdbcType=INTEGER}
   </delete>
+  <insert id="insert" parameterType="kys24.goods.model.Variety">
+    insert into tb_variety (variety_id, variety_name, parent_id, 
+      type, create_time, update_time
+      )
+    values (#{varietyId,jdbcType=INTEGER}, #{varietyName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="kys24.goods.model.Variety">
+    insert into tb_variety
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="varietyId != null">
+        variety_id,
+      </if>
+      <if test="varietyName != null">
+        variety_name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="varietyId != null">
+        #{varietyId,jdbcType=INTEGER},
+      </if>
+      <if test="varietyName != null">
+        #{varietyName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="kys24.goods.model.Variety">
+    update tb_variety
+    <set>
+      <if test="varietyName != null">
+        variety_name = #{varietyName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where variety_id = #{varietyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="kys24.goods.model.Variety">
+    update tb_variety
+    set variety_name = #{varietyName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where variety_id = #{varietyId,jdbcType=INTEGER}
+  </update>
 </mapper>

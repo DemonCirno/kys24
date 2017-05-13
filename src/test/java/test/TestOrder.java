@@ -26,7 +26,13 @@ public class TestOrder {
     @Test
     public void test_1(){
         Order order = new Order();
-        order.setOrderId("qwhgfdsa");
+        order.setOrderId("qwhjnbhgfcdtgyhjnbvggfdsa");
         int count = ordermapper.insert(order);
+    }
+
+    @Test
+    public void test_2(){
+        int count = ordermapper.deleteByPrimaryKey("qwhjnbhgfcdtgyhjnbvggfdsa");
+        System.out.println(count);
     }
 }

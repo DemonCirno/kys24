@@ -115,4 +115,13 @@ public class TestUser {
 		List<User> list = userservice.findByCreateTime(map);
 		System.out.println("user有："+list);
 	}
+
+	@Test
+	public void test11(){
+		Page page = PageUtil.createPage(10,userservice.selectUsernum(),1);
+		List<User> list = userservice.selectAllUser(page);
+				for(User user:list){
+					System.out.println(user.getUserName());
+				}
+	}
 }

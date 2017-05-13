@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/userController")
 public class UserController {
-	private IUserService userService;
 
+	private IUserService userService;
 	@Autowired
 	@SuppressWarnings("SpringJavaAutowiringInspection")
 	public void setUserService(IUserService userService) {
@@ -83,7 +83,7 @@ public class UserController {
 	}
 
 	//个人中心修改用户
-	@RequestMapping(path="/update",method = RequestMethod.POST)
+	@RequestMapping(value="update",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Integer> update(User user){
 		Map<String,Integer> map = new HashMap<>();
@@ -125,9 +125,15 @@ public class UserController {
 	//根据id查找用户
 	@RequestMapping(path="/users/{userId}",method = RequestMethod.GET)
 	@ResponseBody
-	public User selectById(@PathVariable("userId") Integer userId){
+	public Map selectById(@PathVariable("userId") Integer userId){
+		Map<String,Object> map = new HashMap<>();
 		User user = userService.selectById(userId);
-		return user;
+		if(user==null){
+			map.put("select",0);
+		}else{
+			map.put("select",user);
+		}
+		return map;
 	}
 	//根据收货地址查询用户
 	@RequestMapping(path="/users/address",method = RequestMethod.POST)

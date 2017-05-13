@@ -67,6 +67,7 @@
     <select id="selectAllUser" resultMap="BaseResultMap" parameterType="kys24.user.utils.Page">
   	select *
   	from tb_user
+    order by user_id DESC
   	limit #{beginIndex,jdbcType=INTEGER},#{everyPage,jdbcType=INTEGER}
     </select>
 
