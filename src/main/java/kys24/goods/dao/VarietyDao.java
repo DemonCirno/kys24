@@ -3,7 +3,7 @@ package kys24.goods.dao;
 import kys24.goods.entity.Variety;
 import java.util.List;
 
-public interface VarietyMapper {
+public interface VarietyDao {
 
     /**
      *插入一条种类信息

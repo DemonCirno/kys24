@@ -4,7 +4,7 @@ import kys24.goods.entity.Brand;
 
 import java.util.List;
 
-public interface BrandMapper {
+public interface BrandDao {
 
 
 

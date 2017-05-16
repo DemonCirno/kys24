@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kys24.goods.dao.CommodityMapper">
+<mapper namespace="kys24.goods.dao.CommodityDao">
   <resultMap id="BaseResultMap" type="kys24.goods.entity.Commodity">
     <id column="commodity_id" jdbcType="INTEGER" property="commodityId" />
     <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />

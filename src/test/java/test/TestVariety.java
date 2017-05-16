@@ -1,8 +1,9 @@
 package test;
 
 import com.alibaba.fastjson.JSON;
-import kys24.goods.dao.VarietyMapper;
+import kys24.goods.dao.VarietyDao;
 import kys24.goods.entity.Variety;
+import kys24.goods.service.VarietyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +18,16 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:spring.xml","classpath:spring-mybatis.xml" })
 public class TestVariety {
 
-    private VarietyMapper varietyMapper;
+  /*  private VarietyDao varietyDao;
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    public void setVarietyMapper(VarietyMapper varietyMapper) {
-        this.varietyMapper = varietyMapper;
+    public void setVarietyDao(VarietyDao varietyDao) {
+        this.varietyDao = varietyDao;
     }
 
     @Test
     public void test_1(){
-      List<Variety> list = varietyMapper.queryAllVariety();
+      List<Variety> list = varietyDao.queryAllVariety();
      System.out.println(JSON.toJSONString(list));
     }
 
@@ -35,13 +36,13 @@ public class TestVariety {
         Variety v = new Variety();
         v.setVarietyName("鸡爪");
         for(int i=0;i<100;i++){
-            varietyMapper.insertVariety(v);
+            varietyDao.insertVariety(v);
         }
     }
 
     @Test
     public void test_3(){
-        varietyMapper.deleteVariety(23);
+        varietyDao.deleteVariety(23);
     }
 
     @Test
@@ -49,6 +50,20 @@ public class TestVariety {
         Variety v = new Variety();
         v.setVarietyId(100);
         v.setType("hello");
-        varietyMapper.updateVariety(v);
+        varietyDao.updateVariety(v);
+    }*/
+
+    private VarietyService varietyService;
+
+    @Autowired
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    public void setVarietyService(VarietyService varietyService) {
+        this.varietyService = varietyService;
+    }
+
+    @Test
+    public void test1() {
+        List list = varietyService.getAllVarietyList();
+        System.out.println(JSON.toJSONString(list));
     }
 }

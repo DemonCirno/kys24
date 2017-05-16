@@ -1,9 +1,9 @@
 package test;
 
 import com.alibaba.fastjson.JSON;
-import kys24.goods.dao.BrandMapper;
+import kys24.goods.dao.BrandDao;
 import kys24.goods.entity.Brand;
-import netscape.javascript.JSObject;
+import kys24.goods.service.BrandService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,12 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:spring.xml","classpath:spring-mybatis.xml" })
 public class TestBrand {
 
-    private BrandMapper brandMapper;
+   /* private BrandDao brandDao;
 
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    public void setBrandMapper(BrandMapper brandMapper) {
-        this.brandMapper = brandMapper;
+    public void setBrandDao(BrandDao brandDao) {
+        this.brandDao = brandDao;
     }
 
     @Test
@@ -33,14 +33,27 @@ public class TestBrand {
         Brand b = new Brand();
         b.setBrandid(1);
         b.setBrandname("华晨");
-        brandMapper.updateBrand(b);
+        brandDao.updateBrand(b);
     }
 
     @Test
     public void test_2(){
-        List<Brand> list = brandMapper.queryBrandList();
+        List<Brand> list = brandDao.queryBrandList();
         for(Brand b:list){
             System.out.println(JSON.toJSONString(list));
         }
+    }*/
+
+   private BrandService brandService;
+    @Autowired
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+   public void setBrandService(BrandService brandService) {
+        this.brandService = brandService;
+    }
+
+    @Test
+    public void test1(){
+        List<Brand> list = brandService.getBrandList();
+        System.out.println(JSON.toJSONString(list));
     }
 }

@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface CommodityMapper {
+public interface CommodityDao {
 
     /**
      * 插入一条商品信息
