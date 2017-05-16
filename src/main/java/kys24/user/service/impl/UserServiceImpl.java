@@ -10,7 +10,7 @@ import kys24.user.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("User")
 public class UserServiceImpl implements IUserService {
 
     private UserMapper usermapping;

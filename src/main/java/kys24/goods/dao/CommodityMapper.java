@@ -1,17 +1,40 @@
 package kys24.goods.dao;
 
-import kys24.goods.model.Commodity;
+import kys24.goods.entity.Commodity;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommodityMapper {
-    int deleteByPrimaryKey(Integer commodityId);
 
-    int insert(Commodity record);
+    /**
+     * 插入一条商品信息
+     * @param record 商品信息
+     */
+    void insert(Commodity record);
 
-    int insertSelective(Commodity record);
+    /**
+     * 删除指定商品
+     * @param commodityId 商品ID
+     */
+    void deleteByPrimaryKey(Integer commodityId);
 
-    Commodity selectByPrimaryKey(Integer commodityId);
+    /**
+     * 更新商品信息
+     * @param record 更新后的商品信息
+     */
+    void updateByPrimaryKey(Commodity record);
 
-    int updateByPrimaryKeySelective(Commodity record);
+    /**
+     *上传商品图片
+     * @param commodityId 商品ID
+     * @param commodityPicture 商品图片路径
+     */
+    void uploadPicture(@Param("commodityId")int commodityId, @Param("commodityPicture") String commodityPicture);
 
-    int updateByPrimaryKey(Commodity record);
+    /**
+     * 查询所有商品的所有信息
+     * @return
+     */
+    List<Commodity> queryCommodityList();
 }

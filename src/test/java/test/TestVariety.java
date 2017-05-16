@@ -1,46 +1,41 @@
 package test;
 
 import com.alibaba.fastjson.JSON;
-import kys24.goods.dao.BrandMapper;
-import kys24.goods.entity.Brand;
-import netscape.javascript.JSObject;
+import kys24.goods.dao.VarietyMapper;
+import kys24.goods.entity.Variety;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import java.util.List;
 
-
 /**
- * Created by cirno on 2017/5/13.
+ * Created by cirno on 2017/5/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring.xml","classpath:spring-mybatis.xml" })
-public class TestBrand {
+public class TestVariety {
 
-    private BrandMapper brandMapper;
-
+    private VarietyMapper varietyMapper;
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    public void setBrandMapper(BrandMapper brandMapper) {
-        this.brandMapper = brandMapper;
+    public void setVarietyMapper(VarietyMapper varietyMapper) {
+        this.varietyMapper = varietyMapper;
     }
 
     @Test
     public void test_1(){
-        Brand b = new Brand();
-        b.setBrandid(1);
-        b.setBrandname("华晨");
-        brandMapper.updateByPrimaryKey(b);
+      List<Variety> list = varietyMapper.queryAllVariety();
+     System.out.println(JSON.toJSONString(list));
     }
 
     @Test
     public void test_2(){
-        List<Brand> list = brandMapper.queryBrandList();
-        for(Brand b:list){
-            System.out.println(JSON.toJSONString(list));
+        Variety v = new Variety();
+        v.setVarietyName("鸡爪");
+        for(int i=0;i<100;i++){
+            varietyMapper.insert(v);
         }
     }
 }

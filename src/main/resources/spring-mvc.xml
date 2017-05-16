@@ -5,7 +5,6 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!-- 配置自定义扫描包 -->
-    <context:component-scan base-package="kys24.order.controller" />
     <context:component-scan base-package="kys24.goods.controller" />
     <context:component-scan base-package="kys24.user.controller" />
     <!-- 加载静态资源 -->
@@ -18,8 +17,10 @@
        若所使用的 WEB 服务器的默认 Servlet 名称不是 default，则需要通过 default-servlet-name 属性显式指定
      -->
     <mvc:default-servlet-handler />
+
+    <mvc:resources mapping="/image/**" location="WEB-INF/classes/image/"/>
     <!-- 避免不能正常访问@RequestMapping链接，通常配置 mvc:annotation-driven 标签 -->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven />
     <!-- 配置视图解析器：如何把 handler 方法返回值解析为实际的物理视图 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />

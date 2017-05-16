@@ -1,4 +1,4 @@
-package kys24.goods.model;
+package kys24.goods.entity;
 
 import java.util.Date;
 

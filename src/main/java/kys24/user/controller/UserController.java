@@ -10,26 +10,39 @@ import kys24.user.utils.Page;
 import kys24.user.utils.PageUtil;
 import kys24.user.utils.YUUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * @author wlian
  */
 @CrossOrigin
-@Controller
+@RestController
 @RequestMapping("/userController")
 public class UserController {
 
-	private IUserService userService;
+	/**
+	 *分页显示每页显示数据条数
+	 */
+	private final Integer EVERYPAGE = 10;
+
+	/**
+	 *用于处理用户的业务逻辑
+	 */
+	private final IUserService userService;
+
 	@Autowired
 	@SuppressWarnings("SpringJavaAutowiringInspection")
-	public void setUserService(IUserService userService) {
+	public UserController(IUserService userService){
 		this.userService = userService;
 	}
-	//用户登录
+
+	/**
+	 * 用户登录
+	 * @param userPhone
+	 * @param userPassword
+	 * @return
+	 */
 	@RequestMapping(path="/login",method = RequestMethod.POST)
-	@ResponseBody
 	public Map<String,Integer> login(String userPhone,String userPassword){
 		Map<String,Integer> map = new HashMap<>();
 		User user = userService.findByuserPhone(userPhone);
@@ -40,9 +53,13 @@ public class UserController {
 		}else map.put("info", -1);
 		return map;
 	}
-	//用户注册
+
+	/**
+	 * 用户注册
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(path="/register",method = RequestMethod.POST)
-	@ResponseBody
 	public Map<String,Integer> register(User user){
 		Map<String,Integer> map = new HashMap<>();
 		String phone = user.getUserPhone();
@@ -56,21 +73,13 @@ public class UserController {
 		}
 		return map;
 	}
-	//删除用户
-	@RequestMapping(path="/users/delete/{userId}",method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String,Integer> delete(@PathVariable("userId") Integer userId){
-		Map<String,Integer> map = new HashMap<>();
-		if(userService.delectByid(userId)){
-			map.put("upte", 1);
-		}else{
-			map.put("upte", 0);
-		}
-		return map;
-	}
-	//发短信
+
+	/**
+	 * 发送短信验证码
+	 * @param userPhone
+	 * @return
+	 */
 	@RequestMapping(path="/message/{userPhone}",method = RequestMethod.GET)
-	@ResponseBody
 	public Map<String,String> message(@PathVariable("userPhone") String userPhone){
 		Map<String,String> map = new HashMap<>();
 		String newnum = YUUtils.getMessageStatus(userPhone);
@@ -82,9 +91,34 @@ public class UserController {
 		return map;
 	}
 
-	//个人中心修改用户
+
+	/*
+	 *后台用户处理
+	 */
+
+
+	/**
+	 * 删除用户
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(path="/users/{userId}",method = RequestMethod.DELETE)
+	public Map<String,Integer> delete(@PathVariable("userId") Integer userId){
+		Map<String,Integer> map = new HashMap<>();
+		if(userService.delectByid(userId)){
+			map.put("upte", 1);
+		}else{
+			map.put("upte", 0);
+		}
+		return map;
+	}
+
+	/**
+	 * 修改用户信息
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value="update",method = RequestMethod.POST)
-	@ResponseBody
 	public Map<String,Integer> update(User user){
 		Map<String,Integer> map = new HashMap<>();
 		if(userService.updateUser(user)){
@@ -94,9 +128,14 @@ public class UserController {
 		}
 		return map;
 	}
-	//忘记密码修改用户
+
+	/**
+	 * 忘记密码修改密码
+	 * @param userPhone
+	 * @param newPassword
+	 * @return
+	 */
 	@RequestMapping(path="/update_1",method = RequestMethod.POST)
-	@ResponseBody
 	public Map<String,Integer> updateBypassword(String userPhone,String newPassword){
 		Map<String,Integer> map = new HashMap<>();
 		if(userService.updateBypassword(userPhone, newPassword)){
@@ -107,9 +146,13 @@ public class UserController {
 		return map;
 	}
 
-	//个人中心修改密码
+	/**
+	 * 修改密码
+	 * @param userId
+	 * @param Password
+	 * @return
+	 */
 	@RequestMapping(path="/update_2",method = RequestMethod.POST)
-	@ResponseBody
 	public Map<String,Integer> updateByword(Integer userId,String Password){
 		Map<String,Integer> map = new HashMap<>();
 		User user = userService.selectById(userId);
@@ -122,9 +165,12 @@ public class UserController {
 		return map;
 	}
 
-	//根据id查找用户
+	/**
+	 * 根据ID查找用户
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping(path="/users/{userId}",method = RequestMethod.GET)
-	@ResponseBody
 	public Map selectById(@PathVariable("userId") Integer userId){
 		Map<String,Object> map = new HashMap<>();
 		User user = userService.selectById(userId);
@@ -135,12 +181,17 @@ public class UserController {
 		}
 		return map;
 	}
-	//根据收货地址查询用户
+
+	/**
+	 * 根据收货地址模糊搜索用户（分页）
+	 * @param orderAddress
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping(path="/users/address",method = RequestMethod.POST)
-	@ResponseBody
 	public List selectByaddress(String orderAddress,Integer currentPage){
 		List result = new ArrayList();
-		Page page = PageUtil.createPage(10, userService.findByAddress(orderAddress),currentPage);
+		Page page = PageUtil.createPage(EVERYPAGE, userService.findByAddress(orderAddress),currentPage);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("orderAddress",orderAddress);
 		map.put("beginIndex",page.getCurrentPage());
@@ -151,15 +202,20 @@ public class UserController {
 		return result;
 	}
 
-	//根据时间来查找用户
+	/**
+	 * 根据注册时间查找用户（分页）
+	 * @param date1
+	 * @param date2
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping(path="/users/time",method = RequestMethod.POST)
-	@ResponseBody
 	public List selectBytime(String date1,String date2,Integer currentPage){
 		List result = new ArrayList();
 		Map<String,String> timemap = new HashMap<String,String>();
 		timemap.put("start", date1);
 		timemap.put("end", date2);
-		Page page = PageUtil.createPage(10,userService.findByTime(timemap),currentPage);
+		Page page = PageUtil.createPage(EVERYPAGE,userService.findByTime(timemap),currentPage);
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("start",date1);
 		map.put("end",date2);
@@ -171,12 +227,15 @@ public class UserController {
 		return result;
 	}
 
-	//查找所有用户(分页显示)
+	/**
+	 * 查找所有用户（分页）
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping(path="/users/page/{currentPage}",method = RequestMethod.GET)
-	@ResponseBody
 	public List selectAllUser(@PathVariable("currentPage") Integer currentPage){
 		List result = new ArrayList();
-		Page page = PageUtil.createPage(10,userService.selectUsernum(),currentPage);
+		Page page = PageUtil.createPage(EVERYPAGE,userService.selectUsernum(),currentPage);
 		List<User> list = userService.selectAllUser(page);
 		result.add(list);
 		result.add(page);
