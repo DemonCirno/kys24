@@ -12,11 +12,11 @@
   <sql id="Base_Column_List">
     variety_id, variety_name, parent_id, type, create_time, update_time
   </sql>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteVariety" parameterType="java.lang.Integer">
     delete from tb_variety
     where variety_id = #{varietyId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="kys24.goods.entity.Variety">
+  <insert id="insertVariety" parameterType="kys24.goods.entity.Variety">
     insert into tb_variety (variety_id, variety_name, parent_id, 
       type, create_time, update_time
       )
@@ -24,7 +24,7 @@
       #{type,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="kys24.goods.entity.Variety">
+  <update id="updateVariety" parameterType="kys24.goods.entity.Variety">
     update tb_variety
     set variety_name = #{varietyName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},

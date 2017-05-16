@@ -12,19 +12,19 @@ public interface BrandMapper {
      * 插入一条品牌信息
      * @param record
      */
-    void insert(Brand record);
+    void insertBrand(Brand record);
 
     /**
      * 删除品牌信息
      * @param brandid
      */
-    void deleteByPrimaryKey(Integer brandid);
+    void deleteBrand(Integer brandid);
 
     /**
      * 更新品牌信息
      * @param record
      */
-    void updateByPrimaryKey(Brand record);
+    void updateBrand(Brand record);
 
     /**
      * 查找所有品牌信息

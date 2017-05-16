@@ -9,19 +9,19 @@ public interface VarietyMapper {
      *插入一条种类信息
      * @param record
      */
-    void insert(Variety record);
+    void insertVariety(Variety record);
 
     /**
      *根据ID删除一条种类信息
      * @param varietyId
      */
-    void deleteByPrimaryKey(Integer varietyId);
+    void deleteVariety(Integer varietyId);
 
     /**
      *更新一条种类信息
      * @param record
      */
-    void updateByPrimaryKey(Variety record);
+    void updateVariety(Variety record);
 
     /**
      * 查询所有种类信息

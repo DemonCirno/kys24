@@ -33,7 +33,7 @@ public class TestBrand {
         Brand b = new Brand();
         b.setBrandid(1);
         b.setBrandname("华晨");
-        brandMapper.updateByPrimaryKey(b);
+        brandMapper.updateBrand(b);
     }
 
     @Test

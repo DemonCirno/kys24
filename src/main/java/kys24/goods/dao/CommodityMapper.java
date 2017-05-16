@@ -11,19 +11,19 @@ public interface CommodityMapper {
      * 插入一条商品信息
      * @param record 商品信息
      */
-    void insert(Commodity record);
+    void insertCommodity(Commodity record);
 
     /**
      * 删除指定商品
      * @param commodityId 商品ID
      */
-    void deleteByPrimaryKey(Integer commodityId);
+    void deleteCommodity(Integer commodityId);
 
     /**
      * 更新商品信息
      * @param record 更新后的商品信息
      */
-    void updateByPrimaryKey(Commodity record);
+    void updateCommodity(Commodity record);
 
     /**
      *上传商品图片

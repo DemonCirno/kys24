@@ -21,7 +21,7 @@
     commodity_price, commodity_amount, commodity_leavenum, commodity_standard, operator, 
     create_time, update_time, commodity_picture
   </sql>
-  <insert id="insert" parameterType="kys24.goods.entity.Commodity">
+  <insert id="insertCommodity" parameterType="kys24.goods.entity.Commodity">
     insert into tb_commodity (commodity_id, commodity_name, commodity_brand, 
       commodity_variety, commodity_depict, commodity_price, 
       commodity_amount, commodity_leavenum, commodity_standard, 
@@ -33,11 +33,11 @@
       #{operator,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{commodityPicture,jdbcType=VARCHAR})
   </insert>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteCommodity" parameterType="java.lang.Integer">
     delete from tb_commodity
     where commodity_id = #{commodityId,jdbcType=INTEGER}
   </delete>
-  <update id="updateByPrimaryKey" parameterType="kys24.goods.entity.Commodity">
+  <update id="updateCommodity" parameterType="kys24.goods.entity.Commodity">
     update tb_commodity
     set commodity_name = #{commodityName,jdbcType=VARCHAR},
       commodity_brand = #{commodityBrand,jdbcType=INTEGER},

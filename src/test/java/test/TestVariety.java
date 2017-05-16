@@ -35,7 +35,20 @@ public class TestVariety {
         Variety v = new Variety();
         v.setVarietyName("鸡爪");
         for(int i=0;i<100;i++){
-            varietyMapper.insert(v);
+            varietyMapper.insertVariety(v);
         }
+    }
+
+    @Test
+    public void test_3(){
+        varietyMapper.deleteVariety(23);
+    }
+
+    @Test
+    public void test_4(){
+        Variety v = new Variety();
+        v.setVarietyId(100);
+        v.setType("hello");
+        varietyMapper.updateVariety(v);
     }
 }

@@ -11,17 +11,17 @@
   <sql id="Base_Column_List">
     brandID, varietyID, brandname, create_time, update_time
   </sql>
-  <insert id="insert" parameterType="kys24.goods.entity.Brand">
+  <insert id="insertBrand" parameterType="kys24.goods.entity.Brand">
     insert into tb_brand (brandID, varietyID, brandname, 
       create_time, update_time)
     values (#{brandid,jdbcType=INTEGER}, #{varietyid,jdbcType=INTEGER}, #{brandname,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteBrand" parameterType="java.lang.Integer">
     delete from tb_brand
     where brandID = #{brandid,jdbcType=INTEGER}
   </delete>
-  <update id="updateByPrimaryKey" parameterType="kys24.goods.entity.Brand">
+  <update id="updateBrand" parameterType="kys24.goods.entity.Brand">
     update tb_brand
     set varietyID = #{varietyid,jdbcType=INTEGER},
       brandname = #{brandname,jdbcType=VARCHAR},

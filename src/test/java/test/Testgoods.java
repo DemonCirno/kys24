@@ -40,6 +40,6 @@ public class Testgoods {
 
     @Test
     public void test_3(){
-        commodityMapper.deleteByPrimaryKey(3);
+        commodityMapper.deleteCommodity(4);
     }
 }
