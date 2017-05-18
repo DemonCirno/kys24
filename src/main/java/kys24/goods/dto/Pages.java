@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
  * @author Duolaimon
  *         17-5-5 上午11:33
  */
-public class Pages<T> implements PageResult<T>{
+public class Pages<T> implements PageResult<T> {
     private final Logger logger = LoggerFactory.getLogger(Pages.class);
     private int pageSize;
 
     private List<Page<T>> pages;
 
-    public Pages(int pageSize, List<T> list) {
+    private Pages(int pageSize, List<T> list) {
         pages = new ArrayList<>();
         this.pageSize = pageSize;
-        for (int i = 0; i < Math.ceil((double)list.size() / pageSize); i++) {
+        for (int i = 0; i < Math.ceil((double) list.size() / pageSize); i++) {
 
             Page<T> page = new Page<>(i + 1);
             page.setDataList(list.stream()
-                    .skip(i * pageSize)
+                    .skip((long) i * pageSize)
                     .limit(pageSize)
                     .collect(Collectors.toList()));
             pages.add(page);
@@ -45,15 +45,16 @@ public class Pages<T> implements PageResult<T>{
 
     /**
      * 处理列表成页
-     * @param pageSize  每页容量
-     * @param list      列表
-     * @return          页结果
+     *
+     * @param pageSize 每页容量
+     * @param list     列表
+     * @return 页结果
      */
-    public static<T> Pages<T> getPageResultHandle(int pageSize, List<T> list){
+    public static <T> Pages<T> getPageResultHandle(int pageSize, List<T> list) {
         return new Pages<>(pageSize, list);
     }
 
-    public static <T> Page<T> getPageHandle(int pageSize, List<T> list,int pageNumber) {
+    public static <T> Page<T> getPageHandle(int pageSize, List<T> list, int pageNumber) {
         return getPageResultHandle(pageSize, list).getPageByPageNumber(pageNumber);
     }
 

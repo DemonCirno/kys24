@@ -3,7 +3,9 @@ package kys24.goods.service;
 import kys24.goods.dto.CommodityMainInfo;
 import kys24.goods.entity.Commodity;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
+
 
 /**
  * @author Duolaimon
@@ -13,6 +15,8 @@ public interface CommodityService {
     List<Commodity> getCommodityList();
 
     List<CommodityMainInfo> getCommodityInfoList();
+
+
 
     List<CommodityMainInfo> getCommodityInfoListByBrandId(int brandId);
 
@@ -30,6 +34,7 @@ public interface CommodityService {
     void setCommodity(Commodity commodity) throws Exception;
 
     Commodity removeCommodity(int commodityId) throws Exception;
+
 
     String storePicture(int commodityId, MultipartFile file);
 }

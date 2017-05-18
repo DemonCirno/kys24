@@ -29,6 +29,11 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where brandID = #{brandid,jdbcType=INTEGER}
   </update>
+  <update id="uploadPicture" parameterType="kys24.goods.entity.Brand">
+    UPDATE tb_brand
+    SET brand_picture = #{brandPicture}
+    WHERE brand_id = #{brandId};
+  </update>
   <select id="queryBrandList" resultMap="BaseResultMap">
      SELECT * FROM tb_brand ORDER BY brandID ASC ;
   </select>

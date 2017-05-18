@@ -1,6 +1,7 @@
 package kys24.goods.dao;
 
 import kys24.goods.entity.Brand;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -31,4 +32,11 @@ public interface BrandDao {
      * @return
      */
     List<Brand> queryBrandList();
+
+    /**
+     *
+     * @param brandId
+     * @param brandPicture
+     */
+    void uploadPicture(@Param("brandId") int brandId, @Param("brandPicture") String brandPicture);
 }

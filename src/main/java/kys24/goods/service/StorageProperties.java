@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StorageProperties {
 
-    private String location = "D:\\develop\\IDEA\\kys24-goods\\src\\main\\webapp\\WEB-INF\\classes\\image";
+    private String location = "D:\\develop\\IDEA\\kys24\\src\\main\\webapp\\WEB-INF\\classes\\image";
 
     public String getLocation() {
         return location;

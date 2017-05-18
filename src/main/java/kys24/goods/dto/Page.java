@@ -1,16 +1,15 @@
 package kys24.goods.dto;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Duolaimon
  *         17-5-5 上午11:41
  */
-public class Page<T> implements PageResult<T>{
+public class Page<T> implements PageResult<T> {
     private int pageNumber;
 
-    private List<T> dataList = new ArrayList<>();
+    private java.util.List dataList = new ArrayList<>();
 
     Page(int currentPage) {
         this.pageNumber = currentPage;
@@ -21,11 +20,11 @@ public class Page<T> implements PageResult<T>{
     }
 
 
-    public List<T> getDataList() {
+    public java.util.List getDataList() {
         return dataList;
     }
 
-    void setDataList(List<T> dataList) {
+    void setDataList(java.util.List dataList) {
         this.dataList = dataList;
     }
 

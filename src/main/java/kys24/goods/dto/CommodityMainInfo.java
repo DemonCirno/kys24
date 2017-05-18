@@ -1,5 +1,8 @@
 package kys24.goods.dto;
 
+
+import kys24.goods.entity.Commodity;
+
 /**
  * @author Duolaimon
  *         17-4-29 下午1:11
@@ -10,21 +13,19 @@ public class CommodityMainInfo {
     private int commodityBrand;
     private int commodityVariety;
     private String commodityName;
-    private float commodityPrice;
+    private Float commodityPrice;
     private String commodityPicture;
 
     public CommodityMainInfo() {
     }
 
-    public CommodityMainInfo(int commodityID, int commodityBrand,
-                             int commodityVariety, String commodityName,
-                             float commodityPrice, String commodityPicture) {
-        this.commodityID = commodityID;
-        this.commodityBrand = commodityBrand;
-        this.commodityVariety = commodityVariety;
-        this.commodityName = commodityName;
-        this.commodityPrice = commodityPrice;
-        this.commodityPicture = commodityPicture;
+    public CommodityMainInfo(Commodity c) {
+        this.commodityID = c.getCommodityId();
+        this.commodityBrand = c.getCommodityBrand();
+        this.commodityVariety = c.getCommodityVariety();
+        this.commodityName = c.getCommodityName();
+        this.commodityPrice = c.getCommodityPrice();
+        this.commodityPicture = c.getCommodityPicture();
     }
 
     public int getCommodityID() {
@@ -43,11 +44,11 @@ public class CommodityMainInfo {
         this.commodityName = commodityName;
     }
 
-    public float getCommodityPrice() {
+    public Float getCommodityPrice() {
         return commodityPrice;
     }
 
-    public void setCommodityPrice(float commodityPrice) {
+    public void setCommodityPrice(Float commodityPrice) {
         this.commodityPrice = commodityPrice;
     }
 

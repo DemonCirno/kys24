@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * Created by cirno on 2017/5/16.
  */
@@ -52,5 +54,13 @@ public class Testgoods {
     public void test1(){
         Commodity c = commodityService.getCommodityInfoById(100);
         System.out.println(c.getCommodityName());
+    }
+
+    @Test
+    public void test2(){
+        List<Commodity> list = commodityService.getCommodityList();
+        for(Commodity c:list){
+            System.out.println(c.getCommodityName());
+        }
     }
 }

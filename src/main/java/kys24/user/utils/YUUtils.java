@@ -10,19 +10,19 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
 public class YUUtils {
     public static String getMessageStatus(String phone){
-        String str = new String();
+        String str;
         String url = "http://gw.api.taobao.com/router/rest";
-        String appkey = "23794560";
-        String secret = "a27fcf8e1c6901b2a34bc8240d33384d";
+        String appkey = "23542030";
+        String secret = "d61caf1bfaa9a64a9ce68f4f2aab5f9a";
         String num = YUUtils.getRandom();
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
         req.setExtend( "" );
         req.setSmsType( "normal" );
-        req.setSmsFreeSignName( "王lian" );
-        req.setSmsParamString( "{number:'"+num+"'}" );
+        req.setSmsFreeSignName( "魏垚" );
+        req.setSmsParamString( "{name:'用户',token:'"+num+"'}" );
         req.setRecNum( phone );
-        req.setSmsTemplateCode( "SMS_65560001" );
+        req.setSmsTemplateCode( "SMS_29115081" );
         try {
             AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
             System.out.println(rsp.getBody());
@@ -35,7 +35,7 @@ public class YUUtils {
 
     public static String getRandom(){
         String baseNumLetter = "0123456789";
-        String num = new String();
+        String num;
         StringBuffer sb = new StringBuffer();
         for(int i=0;i<5;i++){
             num = baseNumLetter.charAt(new Random().nextInt(baseNumLetter.length()))+"";

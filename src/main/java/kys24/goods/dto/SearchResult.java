@@ -1,12 +1,14 @@
 package kys24.goods.dto;
 
+import java.util.List;
+
 /**
  * @author Duolaimon
  *         17-5-12 下午7:42
  */
-public class SearchResult {
+public class SearchResult<T> {
     private int num;
-    private PageResult pageResult;
+    private List list;
 
     public int getNum() {
         return num;
@@ -16,17 +18,16 @@ public class SearchResult {
         this.num = num;
     }
 
-    public PageResult getPageResult() {
-        return pageResult;
+    public List getList() {
+        return list;
     }
 
-    public void setPageResult(PageResult pageResult) {
-        this.pageResult = pageResult;
+    public void setList(List list) {
+        this.list = list;
     }
 
-    public SearchResult(int num, PageResult pageResult) {
-
-        this.num = num;
-        this.pageResult = pageResult;
+    public SearchResult(List list) {
+        this.list = list;
+        num = list.size();
     }
 }

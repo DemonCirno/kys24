@@ -7,7 +7,6 @@ import kys24.goods.enums.ResultEnum;
 import kys24.goods.exception.ResultException;
 import kys24.goods.service.CommodityService;
 import kys24.goods.service.StorageProperties;
-import kys24.goods.utils.StateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,9 @@ public class CommodityServiceImpl implements CommodityService {
      * 日志
      */
     private static final Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
+
+    private boolean COMMODITY_IS_UPDATED = true;
+
     /**
      * 商品图片保存路径
      */
@@ -52,8 +54,7 @@ public class CommodityServiceImpl implements CommodityService {
     @SuppressWarnings("SpringJavaAutowiringInspection")
     public CommodityServiceImpl(CommodityDao commodityDao, StorageProperties properties) {
         this.commodityDao = commodityDao;
-        commodityList = commodityDao.queryCommodityList();
-        this.rootLocation = Paths.get(properties.getLocation());
+        rootLocation = Paths.get(properties.getLocation());
     }
 
     /**
@@ -61,27 +62,8 @@ public class CommodityServiceImpl implements CommodityService {
      */
     private void reGetCommodityList() {
         commodityList = commodityDao.queryCommodityList();
-        commodityMainInfoList = commodityList.stream().map(c ->
-                new CommodityMainInfo(c.getCommodityId(), c.getCommodityBrand(),
-                        c.getCommodityVariety(), c.getCommodityName(),
-                        c.getCommodityPrice(), c.getCommodityPicture())
-        ).collect(Collectors.toList());
-        StateUtils.COMMODITY_IS_UPDATED = false;
-    }
-
-    /**
-     * 获得一个商品对象容器
-     *
-     * @param commodityId 商品id
-     * @return 包含对象的容器
-     */
-    private Optional<Commodity> hasCommodity(int commodityId) {
-        if (StateUtils.COMMODITY_IS_UPDATED) {
-            reGetCommodityList();
-        }
-        return commodityList.stream()
-                .filter(c -> c.getCommodityId() == commodityId)
-                .findAny();
+        commodityMainInfoList = commodityList.stream().map(CommodityMainInfo::new).collect(Collectors.toList());
+        COMMODITY_IS_UPDATED = false;
     }
 
     /**
@@ -91,7 +73,7 @@ public class CommodityServiceImpl implements CommodityService {
      */
     @Override
     public List<Commodity> getCommodityList() {
-        if (StateUtils.COMMODITY_IS_UPDATED) {
+        if (COMMODITY_IS_UPDATED) {
             reGetCommodityList();
         }
         logger.info("showProduceList : ...");
@@ -105,7 +87,7 @@ public class CommodityServiceImpl implements CommodityService {
      */
     @Override
     public List<CommodityMainInfo> getCommodityInfoList() {
-        if (StateUtils.COMMODITY_IS_UPDATED) {
+        if (COMMODITY_IS_UPDATED) {
             reGetCommodityList();
         }
         return commodityMainInfoList;
@@ -119,7 +101,7 @@ public class CommodityServiceImpl implements CommodityService {
      */
     @Override
     public List<CommodityMainInfo> getCommodityInfoListByBrandId(int brandId) {
-        if (StateUtils.COMMODITY_IS_UPDATED) {
+        if (COMMODITY_IS_UPDATED) {
             reGetCommodityList();
         }
         return commodityMainInfoList.stream()
@@ -135,7 +117,7 @@ public class CommodityServiceImpl implements CommodityService {
      */
     @Override
     public List<CommodityMainInfo> getCommodityInfoListByVarietyId(int varietyId) {
-        if (StateUtils.COMMODITY_IS_UPDATED) {
+        if (COMMODITY_IS_UPDATED) {
             reGetCommodityList();
         }
         return commodityMainInfoList.stream()
@@ -152,10 +134,12 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public Commodity getCommodityInfoById(int commodityId) {
         Optional<Commodity> optional = hasCommodity(commodityId);
-        if (optional.isPresent()) {
-            return optional.get();
-        } else {
+        if (!optional.isPresent()) {
+            logger.error("getCommodityInfoById:-----id is not exist");
             throw new ResultException(ResultEnum.SELECT_NOT_EXIST_ID);
+        } else {
+            logger.info("getCommodityInfoById:-----id is exist");
+            return optional.get();
         }
     }
 
@@ -166,7 +150,7 @@ public class CommodityServiceImpl implements CommodityService {
      * @return 指定关键字的商品信息
      */
     public List<CommodityMainInfo> getCommodityMainInfoListBySearch(String searchKey) {
-        if (StateUtils.COMMODITY_IS_UPDATED) {
+        if (COMMODITY_IS_UPDATED) {
             reGetCommodityList();
         }
         return commodityMainInfoList.stream()
@@ -188,7 +172,7 @@ public class CommodityServiceImpl implements CommodityService {
     @Override
     public void addCommodity(Commodity commodity) {
         commodityDao.insertCommodity(commodity);
-        StateUtils.COMMODITY_IS_UPDATED = true;
+        COMMODITY_IS_UPDATED = true;
     }
 
     /**
@@ -201,26 +185,43 @@ public class CommodityServiceImpl implements CommodityService {
         if (!hasCommodity(commodity.getCommodityId()).isPresent())
             throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
         commodityDao.updateCommodity(commodity);
-        StateUtils.COMMODITY_IS_UPDATED = true;
+        COMMODITY_IS_UPDATED = true;
     }
 
     /**
      * 删除指定id号的商品
-     * @param commodityId   商品id
-     * @return  删除的商品信息
+     *
+     * @param commodityId 商品id
+     * @return 删除的商品信息
      */
     @Override
     public Commodity removeCommodity(int commodityId) throws Exception {
         Optional<Commodity> optional = hasCommodity(commodityId);
         Commodity commodity;
         if (!optional.isPresent()) {
+            logger.error("removeCommodity:-----id is not exist");
             throw new ResultException(ResultEnum.DELETE_NOT_EXIST_ID);
         } else {
             commodity = optional.get();
         }
         commodityDao.deleteCommodity(commodityId);
-        StateUtils.COMMODITY_IS_UPDATED = true;
+        COMMODITY_IS_UPDATED = true;
         return commodity;
+    }
+
+    /**
+     * 获得一个商品对象容器
+     *
+     * @param commodityId 商品id
+     * @return 包含对象的容器
+     */
+    private Optional<Commodity> hasCommodity(int commodityId) {
+        if (COMMODITY_IS_UPDATED) {
+            reGetCommodityList();
+        }
+        return commodityList.stream()
+                .filter(c -> c.getCommodityId() == commodityId)
+                .findAny();
     }
 
     /**
@@ -244,19 +245,19 @@ public class CommodityServiceImpl implements CommodityService {
             String fileName = file.getOriginalFilename();
             String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
             String pictureName = "4d3c2b1a_" + commodityId + fileType;// 保存在本地的图片名字
-            Optional<Commodity> optional = hasCommodity(commodityId);
+            Optional<Commodity> commodityOptional = hasCommodity(commodityId);
             /*判断是否存在目标商品*/
-            if (optional.isPresent()) {
+            if (commodityOptional.isPresent()) {
                 picturePath = "/image/" + pictureName;
-                StateUtils.COMMODITY_IS_UPDATED = true;
                 commodityDao.uploadPicture(commodityId, picturePath);
+                COMMODITY_IS_UPDATED = true;
             } else {
                 throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
             }
 
             Files.copy(file.getInputStream(), this.rootLocation.resolve(pictureName));
         } catch (ResultException e) {
-            logger.info("ResultException:{}",e.getMessage());
+            logger.info("ResultException:{}", e.getMessage());
             throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
         } catch (MultipartException e) {
             logger.info("MultipartException:{}", e.getMessage());
