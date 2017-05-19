@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 import kys24.user.model.User;
 import kys24.user.service.IUserService;
+import kys24.user.utils.MD5Util;
 import kys24.user.utils.Page;
 import kys24.user.utils.PageUtil;
 import kys24.user.utils.YUUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author wlian
@@ -37,15 +39,21 @@ public class UserController {
 	}
 
 	/**
+	 * cookie设置
+	 *
+	 */
+
+	/**
 	 * 用户登录
 	 * @param userPhone
 	 * @param userPassword
 	 * @return
 	 */
 	@RequestMapping(path="/login",method = RequestMethod.POST)
-	public Map<String,Integer> login(String userPhone,String userPassword){
+	public Map<String,Integer> login(HttpSession session, String userPhone, String userPassword){
 		Map<String,Integer> map = new HashMap<>();
 		User user = userService.findByuserPhone(userPhone);
+		session.setAttribute("user",user);
 		if(user==null){
 			map.put("info", 0);
 		}else if(user.getUserPassword().equals(userPassword)){
@@ -91,9 +99,11 @@ public class UserController {
 		return map;
 	}
 
+
 	/*
 	 *后台用户处理
 	 */
+
 
 	/**
 	 * 删除用户
@@ -136,10 +146,15 @@ public class UserController {
 	@RequestMapping(path="/update_1",method = RequestMethod.POST)
 	public Map<String,Integer> updateBypassword(String userPhone,String newPassword){
 		Map<String,Integer> map = new HashMap<>();
-		if(userService.updateBypassword(userPhone, newPassword)){
-			map.put("upte", 1);
+		User user = userService.findByuserPhone(userPhone);
+		if(user!=null){
+			if(userService.updateBypassword(userPhone, newPassword)){
+				map.put("upte", 1);
+			}else{
+				map.put("upte", 0);
+			}
 		}else{
-			map.put("upte", 0);
+			map.put("upte",-1);
 		}
 		return map;
 	}
@@ -151,14 +166,23 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(path="/update_2",method = RequestMethod.POST)
-	public Map<String,Integer> updateByword(Integer userId,String Password){
-		Map<String,Integer> map = new HashMap<>();
+	public Map<String,Object> updateByword(Integer userId,String Password,String newPassword){
+		Map<String,Object> map = new HashMap<>();
 		User user = userService.selectById(userId);
-		String oldPassword = user.getUserPassword();
-		if(Password==oldPassword){
-			map.put("upte",1);
-		}else{
-			map.put("upte", 0);
+		if(user!=null){
+			String oldPassword = user.getUserPassword();
+			if (MD5Util.md5(Password).equals(oldPassword)) {
+				if (userService.updateByps(userId, newPassword)) {
+					map.put("upte", 1);
+				} else {
+					map.put("upte", -1);
+				}
+			} else {
+				map.put("upte", 0);
+			}
+
+		}else {
+			map.put("upte","该用户不存在");
 		}
 		return map;
 	}

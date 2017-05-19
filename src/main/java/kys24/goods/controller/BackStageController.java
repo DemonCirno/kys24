@@ -140,13 +140,13 @@ public class BackStageController {
      * 上传商品图片至指定路径
      * {@link kys24.goods.service.StorageProperties}类设置了路径位置
      *
-     * @param file        上传的图片
-     * @param commodityId 商品id
+//     * @param file        上传的图片
+//     * @param commodityId 商品id
      * @return 商品图片上传结果
      */
-    @PostMapping("/pictures")
-    public BackStageResult<String> uploadCommodityPicture(@RequestParam("file") MultipartFile file,
-                                                          @RequestParam("commodityId") int commodityId) {
+    @PostMapping("/pictures/{commodityId}")
+    public BackStageResult<String> uploadCommodityPicture(@RequestBody MultipartFile file,
+                                                          @PathVariable("commodityId") int commodityId) {
         logger.info("/back/pictures[POST]:(*^__^*) upload commodity picture");
         String picturePath;
         try {
@@ -244,9 +244,9 @@ public class BackStageController {
         return new BackStageResult<>(ResultEnum.SUCCESS, brand);
     }
 
-    @PostMapping("/pictures/brand")
+    @PostMapping("/pictures/brand/{brandId}")
     public BackStageResult<String> uploadBrandPicture(@RequestParam("file") MultipartFile file,
-                                                      @RequestParam("brandId") int brandId) {
+                                                      @PathVariable("brandId") int brandId) {
         logger.info("/back/pictures/brand[POST]:(*^__^*) upload brand picture");
         String picturePath;
         try {

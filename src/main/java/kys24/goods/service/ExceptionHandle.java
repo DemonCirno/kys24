@@ -32,5 +32,6 @@ public class ExceptionHandle {
         logger.error("------Exception------");
         e.printStackTrace();
         return new BackStageResult<>(ResultEnum.OTHERS_EXCEPTION, e.getCause());
+
     }
 }

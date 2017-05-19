@@ -254,8 +254,8 @@ public class CommodityServiceImpl implements CommodityService {
             } else {
                 throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
             }
-
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(pictureName));
+            Files.deleteIfExists(rootLocation.resolve(pictureName));
+            Files.copy(file.getInputStream(), rootLocation.resolve(pictureName));
         } catch (ResultException e) {
             logger.info("ResultException:{}", e.getMessage());
             throw new ResultException(ResultEnum.UPDATE_NOT_EXIST_ID);
@@ -263,6 +263,7 @@ public class CommodityServiceImpl implements CommodityService {
             logger.info("MultipartException:{}", e.getMessage());
             throw new ResultException(ResultEnum.FILE_TOO_LARGE);
         } catch (Exception e) {
+            e.printStackTrace();
             logger.info("Exception:{}", e.getMessage());
             throw new ResultException(ResultEnum.OTHERS_EXCEPTION);
         }

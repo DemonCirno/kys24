@@ -196,7 +196,7 @@
 <li><p>请求方式</p>
 
 <blockquote>
-  <p>/POST   </p>
+  <p>/DELETE  </p>
 </blockquote></li>
 <li><p>请求参数   返回参数   </p>
 
@@ -391,19 +391,17 @@
 <tr>
   <td align="left">修改成功</td>
   <td align="right">修改失败</td>
-  <td align="center"></td>
+  <td align="center">用户不存在</td>
 </tr>
 <tr>
   <td align="left">{“upte”,1}</td>
   <td align="right">{“upte”,0}</td>
-  <td align="center"></td>
+  <td align="center">{“upte”,-1}</td>
 </tr>
 </tbody></table>
 
 </blockquote></li>
 </ul>
-
-
 
 <h2 id="个人中心修改密码">个人中心修改密码</h2>
 
@@ -439,21 +437,34 @@
   <td align="center">原密码</td>
 </tr>
 <tr>
-  <td align="left">原密码正确</td>
-  <td align="right">原密码错误</td>
-  <td align="center"></td>
-</tr>
-<tr>
-  <td align="left">{“upte”,1}</td>
-  <td align="right">{“upte”,0}</td>
-  <td align="center"></td>
+  <td align="left">newPassword</td>
+  <td align="right">String</td>
+  <td align="center">新密码</td>
 </tr>
 </tbody></table>
 
 </blockquote></li>
 </ul>
 
+<blockquote>
+  <table>
+<thead>
+<tr>
+  <th align="left">修改成功</th>
+  <th align="right">修改不成功</th>
+  <th align="center">原密码错误</th>
+  <th>该用户不存在</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="left">{“upte”,1}</td>
+  <td align="right">{“upte”,-1}</td>
+  <td align="center">{“upte”,0}</td>
+  <td>{“upte”,”该用户不存在”}</td>
+</tr>
+</tbody></table>
 
+</blockquote>
 
 <h2 id="根据id查找用户">根据id查找用户</h2>
 

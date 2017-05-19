@@ -1,5 +1,6 @@
 package kys24.goods.service.impl;
 
+
 import kys24.goods.controller.ShopController;
 import kys24.goods.dao.VarietyDao;
 import kys24.goods.entity.Variety;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 /**
  * @author Duolaimon
@@ -31,7 +33,6 @@ public class VarietyServiceImpl implements VarietyService {
     private List<Variety> varietyList;
 
     private final VarietyDao varietyDao;
-
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
     public VarietyServiceImpl(VarietyDao varietyDao) {

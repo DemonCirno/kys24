@@ -15,13 +15,15 @@ import java.util.stream.Collectors;
 public class Pages<T> implements PageResult<T> {
     private final Logger logger = LoggerFactory.getLogger(Pages.class);
     private int pageSize;
+    private int totalPage;
 
     private List<Page<T>> pages;
 
     private Pages(int pageSize, List<T> list) {
         pages = new ArrayList<>();
         this.pageSize = pageSize;
-        for (int i = 0; i < Math.ceil((double) list.size() / pageSize); i++) {
+        totalPage = (int) Math.ceil((double) list.size() / pageSize);
+        for (int i = 0; i < totalPage; i++) {
 
             Page<T> page = new Page<>(i + 1);
             page.setDataList(list.stream()
@@ -56,6 +58,10 @@ public class Pages<T> implements PageResult<T> {
 
     public static <T> Page<T> getPageHandle(int pageSize, List<T> list, int pageNumber) {
         return getPageResultHandle(pageSize, list).getPageByPageNumber(pageNumber);
+    }
+
+    public int getTotalPage() {
+        return totalPage;
     }
 
     public int getPageSize() {

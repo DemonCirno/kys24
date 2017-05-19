@@ -1,5 +1,6 @@
 package kys24.goods.dto;
 
+
 import kys24.goods.enums.ResultEnum;
 import kys24.goods.exception.ResultException;
 

@@ -9,9 +9,10 @@ import kys24.goods.entity.Commodity;
  */
 @SuppressWarnings("unused")
 public class CommodityMainInfo {
-    private int commodityID;
-    private int commodityBrand;
-    private int commodityVariety;
+
+    private Integer commodityID;
+    private Integer commodityBrand;
+    private Integer commodityVariety;
     private String commodityName;
     private Float commodityPrice;
     private String commodityPicture;

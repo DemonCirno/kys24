@@ -183,5 +183,4 @@ public class ShopController {
         logger.info("/shop/search ---searchKey={}[POST]:(*^__^*) search commodity information by the specified [searchKey]", searchKey);
         return new SearchResult<>(commodityService.getCommodityMainInfoListBySearch(searchKey));
     }
-
 }

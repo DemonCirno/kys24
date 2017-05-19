@@ -3,6 +3,7 @@ package kys24.goods.entity;
 import java.util.Date;
 
 public class Commodity {
+
     private Integer commodityId;
 
     private String commodityName;
