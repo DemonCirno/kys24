@@ -166,25 +166,30 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(path="/update_2",method = RequestMethod.POST)
-	public Map<String,Object> updateByword(Integer userId,String Password,String newPassword){
+	public String updateByword(Integer userId,String Password,String newPassword){
 		Map<String,Object> map = new HashMap<>();
+		String str = "";
 		User user = userService.selectById(userId);
 		if(user!=null){
 			String oldPassword = user.getUserPassword();
 			if (MD5Util.md5(Password).equals(oldPassword)) {
 				if (userService.updateByps(userId, newPassword)) {
-					map.put("upte", 1);
+					//map.put("upte", 1);
+					str="1";
 				} else {
-					map.put("upte", -1);
+					//map.put("upte", -1);
+					str="-1";
 				}
 			} else {
-				map.put("upte", 0);
+				//map.put("upte", 0);
+				str="0";
 			}
 
 		}else {
-			map.put("upte","该用户不存在");
+			//map.put("upte",2);
+			str="2";
 		}
-		return map;
+		return str;
 	}
 
 	/**

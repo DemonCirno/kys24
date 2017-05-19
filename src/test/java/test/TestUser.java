@@ -27,16 +27,15 @@ public class TestUser {
 	}
 	@Test
 	public void test1(){
+
 		for(int i=0;i<100;i++){
 			User user = new User();
-			user.setUserName("王玉");
+			user.setUserName("測試");
 			user.setUserPassword("123456789");
-			boolean count = userservice.addUser(user);
-			if (count) {
-				System.out.println("注册成功");
+			userservice.addUser(user);
 			}
-		}
 	}
+
 	@Test
 	public void test2(){
 		String userPhone = "13988455255";
