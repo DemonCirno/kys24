@@ -45,20 +45,29 @@ public class UserController {
 
 	/**
 	 * 用户登录
+	 * @param httpSession
 	 * @param userPhone
 	 * @param userPassword
 	 * @return
 	 */
 	@RequestMapping(path="/login",method = RequestMethod.POST)
-	public Map<String,Integer> login(HttpSession session, String userPhone, String userPassword){
+	public Map<String,Integer> login(HttpSession httpSession, String userPhone, String userPassword){
 		Map<String,Integer> map = new HashMap<>();
 		User user = userService.findByuserPhone(userPhone);
-		session.setAttribute("user",user);
+		//用户手机号码不存在
 		if(user==null){
 			map.put("info", 0);
-		}else if(user.getUserPassword().equals(userPassword)){
-			map.put("info", 1);
-		}else map.put("info", -1);
+		}else{
+			if(MD5Util.md5(userPassword).equals(user.getUserPassword())){
+				//将用户信息存入session
+				httpSession.setAttribute("user",user);
+				//密码正确
+				map.put("info",1);
+			}else{
+				//密码错误
+				map.put("info",-1);
+			}
+		}
 		return map;
 	}
 

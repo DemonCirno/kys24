@@ -201,3 +201,49 @@
   }
 }
 ```
+
+
+
+### `POST`	`/back/pictures/brand/{brandId}`	上传品牌图片
+
+##### Parameter
+
+​	表单属性名			Description
+
+​	**file					图片属性名**
+
+​	**brandId**		**商品id**
+
+##### Responses
+
+###### 	Example Value:	
+
+文件大于5M：
+
+```
+{
+  "code": 112,
+  "message": "文件过大,无法上传",
+  "data": null
+}
+```
+
+不存在id：
+
+```
+{
+  "code": 102,
+  "message": "更新失败,不存在指定id",
+  "data": null
+}
+```
+
+成功：
+
+```
+{
+  "code": 100,
+  "message": "操作成功",
+  "data": "/image/4d3c2b1aB_11.jpg"
+}
+```

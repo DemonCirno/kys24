@@ -16,8 +16,6 @@ public interface CommodityService {
 
     List<CommodityMainInfo> getCommodityInfoList();
 
-
-
     List<CommodityMainInfo> getCommodityInfoListByBrandId(int brandId);
 
     List<CommodityMainInfo> getCommodityInfoListByVarietyId(int varietyId);
@@ -34,7 +32,6 @@ public interface CommodityService {
     void setCommodity(Commodity commodity) throws Exception;
 
     Commodity removeCommodity(int commodityId) throws Exception;
-
 
     String storePicture(int commodityId, MultipartFile file);
 }

@@ -288,7 +288,7 @@
 
 
 
-### `POST`	`/back/pictures`	上传商品图片
+### `POST`	`/back/pictures/{commodityId}`	上传商品图片
 
 ##### Parameter
 
@@ -328,6 +328,6 @@
 {
   "code": 100,
   "message": "操作成功",
-  "data": "/home/deity/sh/upload-dir/4d3c2b1a_11.jpg"
+  "data": "/image/4d3c2b1a_11.jpg"
 }
 ```

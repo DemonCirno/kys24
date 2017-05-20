@@ -3,14 +3,16 @@ package kys24.order.model;
 import java.util.Date;
 
 public class OrderItem {
+
+    //订单项ID（主键）
     private Integer orderitemId;
-
+    //订单ID
     private String orderId;
-
+    //商品ID
     private Integer commodityId;
-
+    //商品单价
     private Float commodityPrice;
-
+    //商品数量
     private Integer count;
 
     private Date createTime;

@@ -37,4 +37,11 @@ public interface CommodityDao {
      * @return
      */
     List<Commodity> queryCommodityList();
+
+    /**
+     * 根据ID查询商品
+     * @param id
+     * @return
+     */
+    Commodity queryCommodityByID(Integer id);
 }

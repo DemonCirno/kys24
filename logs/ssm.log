@@ -295,4 +295,97 @@ Caused by: java.nio.file.InvalidPathException: Illegal char <:> at index 4: file
  [INFO] [2017-05-19 21:40:18][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
  [INFO] [2017-05-19 21:40:32][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@dc24521: startup date [Fri May 19 21:40:14 CST 2017]; root of context hierarchy
  [INFO] [2017-05-19 21:40:32][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+ [INFO] [2017-05-19 22:37:03][org.springframework.test.context.support.DefaultTestContextBootstrapper]Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ [INFO] [2017-05-19 22:37:03][org.springframework.test.context.support.DefaultTestContextBootstrapper]Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1d057a39, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@26be92ad, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c70fda8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@224edc67, org.springframework.test.context.transaction.TransactionalTestExecutionListener@14acaea5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@46d56d67]
+ [INFO] [2017-05-19 22:37:04][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+ [INFO] [2017-05-19 22:37:07][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+ [INFO] [2017-05-19 22:37:07][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@dc24521: startup date [Fri May 19 22:37:07 CST 2017]; root of context hierarchy
+ [INFO] [2017-05-19 22:37:08][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+ [INFO] [2017-05-19 22:37:14][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+ [WARN] [2017-05-19 22:37:17][org.springframework.context.support.GenericApplicationContext]Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'brandServiceImpl' defined in file [D:\develop\IDEA\kys24\target\classes\kys24\goods\service\impl\BrandServiceImpl.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [kys24.goods.service.impl.BrandServiceImpl]: Constructor threw exception; nested exception is java.nio.file.InvalidPathException: Illegal char <:> at index 4: file:/D:/develop/IDEA/kys24/src/main/webapp/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20170505.jar!//image
+ [INFO] [2017-05-19 22:37:17][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+ [ERROR] [2017-05-19 22:37:17][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c70fda8] to prepare test instance [test.Testgoods@51bd8b5c]
+ java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:230)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:287)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:289)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:94)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)
+	at com.intellij.rt.execution.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:51)
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242)
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'brandServiceImpl' defined in file [D:\develop\IDEA\kys24\target\classes\kys24\goods\service\impl\BrandServiceImpl.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [kys24.goods.service.impl.BrandServiceImpl]: Constructor threw exception; nested exception is java.nio.file.InvalidPathException: Illegal char <:> at index 4: file:/D:/develop/IDEA/kys24/src/main/webapp/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20170505.jar!//image
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:279)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1193)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1095)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:513)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:128)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:108)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:251)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116)
+	... 24 more
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [kys24.goods.service.impl.BrandServiceImpl]: Constructor threw exception; nested exception is java.nio.file.InvalidPathException: Illegal char <:> at index 4: file:/D:/develop/IDEA/kys24/src/main/webapp/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20170505.jar!//image
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:154)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:122)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:271)
+	... 41 more
+Caused by: java.nio.file.InvalidPathException: Illegal char <:> at index 4: file:/D:/develop/IDEA/kys24/src/main/webapp/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20170505.jar!//image
+	at sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182)
+	at sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:153)
+	at sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
+	at sun.nio.fs.WindowsPath.parse(WindowsPath.java:94)
+	at sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:255)
+	at java.nio.file.Paths.get(Paths.java:84)
+	at kys24.goods.service.impl.BrandServiceImpl.<init>(BrandServiceImpl.java:52)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:142)
+	... 43 more
+[INFO] [2017-05-19 22:38:14][org.springframework.test.context.support.DefaultTestContextBootstrapper]Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ [INFO] [2017-05-19 22:38:14][org.springframework.test.context.support.DefaultTestContextBootstrapper]Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1d057a39, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@26be92ad, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c70fda8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@224edc67, org.springframework.test.context.transaction.TransactionalTestExecutionListener@14acaea5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@46d56d67]
+ [INFO] [2017-05-19 22:38:14][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+ [INFO] [2017-05-19 22:38:15][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+ [INFO] [2017-05-19 22:38:15][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@dc24521: startup date [Fri May 19 22:38:15 CST 2017]; root of context hierarchy
+ [INFO] [2017-05-19 22:38:16][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+ [INFO] [2017-05-19 22:38:19][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+ [INFO] [2017-05-19 22:38:21][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@dc24521: startup date [Fri May 19 22:38:15 CST 2017]; root of context hierarchy
+ [INFO] [2017-05-19 22:38:21][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
+ [INFO] [2017-05-19 22:52:49][org.springframework.test.context.support.DefaultTestContextBootstrapper]Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+ [INFO] [2017-05-19 22:52:49][org.springframework.test.context.support.DefaultTestContextBootstrapper]Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1d057a39, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@26be92ad, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4c70fda8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@224edc67, org.springframework.test.context.transaction.TransactionalTestExecutionListener@14acaea5, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@46d56d67]
+ [INFO] [2017-05-19 22:52:50][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring.xml]
+ [INFO] [2017-05-19 22:52:50][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+ [INFO] [2017-05-19 22:52:50][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@dc24521: startup date [Fri May 19 22:52:50 CST 2017]; root of context hierarchy
+ [INFO] [2017-05-19 22:52:51][org.springframework.context.support.PropertySourcesPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+ [INFO] [2017-05-19 22:52:54][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} inited
+ [INFO] [2017-05-19 22:52:55][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@dc24521: startup date [Fri May 19 22:52:50 CST 2017]; root of context hierarchy
+ [INFO] [2017-05-19 22:52:55][com.alibaba.druid.pool.DruidDataSource]{dataSource-1} closed
  

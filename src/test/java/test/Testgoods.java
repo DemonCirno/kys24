@@ -1,5 +1,6 @@
 package test;
 
+import kys24.goods.dao.CommodityDao;
 import kys24.goods.entity.Commodity;
 import kys24.goods.service.CommodityService;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:spring.xml","classpath:spring-mybatis.xml" })
 public class Testgoods {
 
-/*    private CommodityDao commodityDao;
+    private CommodityDao commodityDao;
 
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
@@ -41,9 +42,15 @@ public class Testgoods {
     @Test
     public void test_3(){
         commodityDao.deleteCommodity(4);
-    }*/
+    }
 
-    private CommodityService commodityService;
+    @Test
+    public void test_4(){
+        Commodity c = commodityDao.queryCommodityByID(100);
+        System.out.println(c.getCommodityName());
+    }
+
+  /*  private CommodityService commodityService;
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
     public void setCommodityService(CommodityService commodityService) {
@@ -62,5 +69,5 @@ public class Testgoods {
         for(Commodity c:list){
             System.out.println(c.getCommodityName());
         }
-    }
+    }*/
 }
