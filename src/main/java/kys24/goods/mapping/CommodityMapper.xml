@@ -53,6 +53,48 @@
       commodity_picture = #{commodityPicture,jdbcType=VARCHAR}
     where commodity_id = #{commodityId,jdbcType=INTEGER}
   </update>
+  <update id="updateByPrimaryKeySelective" parameterType="kys24.goods.entity.Commodity">
+    update tb_commodity
+    <set>
+      <if test="commodityName != null">
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityBrand != null">
+        commodity_brand = #{commodityBrand,jdbcType=INTEGER},
+      </if>
+      <if test="commodityVariety != null">
+        commodity_variety = #{commodityVariety,jdbcType=INTEGER},
+      </if>
+      <if test="commodityDepict != null">
+        commodity_depict = #{commodityDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityPrice != null">
+        commodity_price = #{commodityPrice,jdbcType=REAL},
+      </if>
+      <if test="commodityAmount != null">
+        commodity_amount = #{commodityAmount,jdbcType=INTEGER},
+      </if>
+      <if test="commodityLeavenum != null">
+        commodity_leavenum = #{commodityLeavenum,jdbcType=INTEGER},
+      </if>
+      <if test="commodityStandard != null">
+        commodity_standard = #{commodityStandard,jdbcType=REAL},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commodityPicture != null">
+        commodity_picture = #{commodityPicture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commodity_id = #{commodityId,jdbcType=INTEGER}
+  </update>
   <update id="uploadPicture">
     UPDATE tb_commodity
     SET commodity_picture = #{commodityPicture}

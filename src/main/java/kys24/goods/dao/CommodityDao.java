@@ -26,6 +26,13 @@ public interface CommodityDao {
     void updateCommodity(Commodity record);
 
     /**
+     * 部分更新
+     * @param commodity
+     * @return
+     */
+    int updateByPrimaryKeySelective(Commodity commodity);
+
+    /**
      *上传商品图片
      * @param commodityId 商品ID
      * @param commodityPicture 商品图片路径

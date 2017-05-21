@@ -1,8 +1,10 @@
 package kys24.order.dao;
 
 import kys24.order.model.OrderItem;
+import java.util.List;
 
 public interface OrderItemMapper {
+
     int deleteByPrimaryKey(Integer orderitemId);
 
     int insert(OrderItem record);
@@ -14,4 +16,8 @@ public interface OrderItemMapper {
     int updateByPrimaryKeySelective(OrderItem record);
 
     int updateByPrimaryKey(OrderItem record);
+
+    List<OrderItem> queryAllById(String orderid);
+
+    int countById(String orderid);
 }

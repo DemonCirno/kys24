@@ -114,4 +114,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where orderitem_id = #{orderitemId,jdbcType=INTEGER}
   </update>
+  <select id="queryAllById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM tb_orderitem WHERE order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <select id="countById" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT count(*) FROM tb_orderitem WHERE order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
 </mapper>

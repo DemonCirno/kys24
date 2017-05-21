@@ -11,7 +11,7 @@ public class Test {
 
     @org.junit.Test
     public void testMessage(){
-        YUUtils.getMessageStatus("15204696480");
+        YUUtils.getMessageStatus("15145083251");
     }
 
     @org.junit.Test

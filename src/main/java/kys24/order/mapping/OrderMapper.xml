@@ -126,4 +126,20 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where order_id = #{orderId,jdbcType=VARCHAR}
   </update>
+  <select id="queryAllOrder" parameterType="kys24.user.utils.Page" resultMap="BaseResultMap">
+    SELECT * FROM tb_order
+    ORDER BY create_time DESC
+    limit #{beginIndex,jdbcType=INTEGER},#{everyPage,jdbcType=INTEGER}
+  </select>
+  <select id="countAllOrder" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM tb_order
+  </select>
+  <select id="queryOrderByuserId" resultType="java.util.HashMap" resultMap="BaseResultMap">
+    SELECT * FROM tb_order WHERE user_id = #{userid}
+     ORDER BY create_time DESC
+    limit #{beginpage},#{everypage}
+  </select>
+  <select id="countByuserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+   SELECT COUNT(*) FROM tb_order WHERE user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

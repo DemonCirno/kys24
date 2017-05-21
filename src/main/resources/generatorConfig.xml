@@ -13,20 +13,19 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="kys24.goods.entity" targetProject="D:\develop\IDEA\kys24\src\main\java\">
+		<javaModelGenerator targetPackage="kys24.goods.entity" targetProject="C:\Users\cirno">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成的映射文件包名和位置 -->
-		<sqlMapGenerator targetPackage="kys24.goods.mapping" targetProject="D:\develop\IDEA\kys24\src\main\java\">
+		<sqlMapGenerator targetPackage="kys24.goods.mapping" targetProject="C:\Users\cirno">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="kys24.goods.dao" targetProject="D:\develop\IDEA\kys24\src\main\java\">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="kys24.goods.dao" targetProject="C:\Users\cirno">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
 		<table tableName="tb_commodity" domainObjectName="Commodity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
-		<table tableName="tb_brand" domainObjectName="Brand" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
-		<table tableName="tb_variety" domainObjectName="Variety" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /></context>
+		</context>
 </generatorConfiguration>

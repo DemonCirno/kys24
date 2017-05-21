@@ -34,11 +34,11 @@ public class CartController {
     /**
      * 用于处理商品的业务逻辑
      */
-    private CommodityDao commodityDao;
+    private final CommodityDao commodityDao;
 
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    public void setCommodityDao(CommodityDao commodityDao) {
+   public CartController(CommodityDao commodityDao){
         this.commodityDao = commodityDao;
     }
 
