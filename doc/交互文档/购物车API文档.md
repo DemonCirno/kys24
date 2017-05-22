@@ -32,7 +32,7 @@
           }
         }
   ```
-  - ### `DELETE`  `/commodities/{commodityid}`	删除购物车商品[先登录]
+  - ### `DELETE`  `/cart/commodities/{commodityid}`	删除购物车商品[先登录]
     ##### Parameter
     commodityid           商品id
    ##### Responses 

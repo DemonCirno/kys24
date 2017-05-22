@@ -63,4 +63,10 @@ public class TestOrderItems {
         List<OrderItem> list = orderItemService.queryOrderItemsById("dingdan");
         System.out.println(JSON.toJSONString(list));
     }
+
+    @Test
+    public void test_2(){
+        Integer count = orderItemService.querySumCount(23);
+        System.out.println(count);
+    }
 }

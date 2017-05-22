@@ -31,9 +31,9 @@ public interface IOrderItemService {
     List<OrderItem> queryOrderItemsById(String orderid);
 
     /**
-     * 根据商品ID查询已支付订单的订单项
-     * @param goodid
+     * 根据商品id查询商品销量
+     * @param commodityid
      * @return
      */
-    List<OrderItem> queryOrderItemsByGoodsId(Integer goodid);
+    Integer querySumCount(Integer commodityid);
 }

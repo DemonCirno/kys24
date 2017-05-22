@@ -20,4 +20,6 @@ public interface OrderItemMapper {
     List<OrderItem> queryAllById(String orderid);
 
     int countById(String orderid);
+
+    int querySumCount(Integer commodityid);
 }

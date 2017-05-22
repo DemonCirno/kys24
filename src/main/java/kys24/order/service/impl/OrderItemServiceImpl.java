@@ -52,8 +52,13 @@ public class OrderItemServiceImpl implements IOrderItemService{
         return orderItemMapper.queryAllById(orderid);
     }
 
+    /**
+     * 根据商品id查询销量
+     * @param commodityid
+     * @return
+     */
     @Override
-    public List<OrderItem> queryOrderItemsByGoodsId(Integer goodid) {
-        return null;
+    public Integer querySumCount(Integer commodityid) {
+        return orderItemMapper.querySumCount(commodityid);
     }
 }
