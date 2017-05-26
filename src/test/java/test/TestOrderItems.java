@@ -66,7 +66,10 @@ public class TestOrderItems {
 
     @Test
     public void test_2(){
-        Integer count = orderItemService.querySumCount(23);
-        System.out.println(count);
+
+            Object count = orderItemService.querySumCount(23);
+            System.out.println(count);
+
     }
+
 }

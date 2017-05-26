@@ -1,0 +1,60 @@
+.main{
+    margin-top: 20px;
+}
+.item{
+    padding: 15px;
+    border: solid 1px black;
+
+}
+.goods p{
+    margin-left: 20px;
+    height: 50px;
+    line-height:50px;
+}
+.price{
+    margin-left: 70px;
+    height: 50px;
+    line-height:50px;
+}
+.num{
+    margin-left: 50px;
+}
+.num span{
+    display: inline-block;
+    border: solid 1px #DFDFDF;
+}
+.num input{
+    text-align: center;
+    height: 30px;
+    width: 50px;
+    border: none;
+    border-left: solid #DFDFDF 1px;
+    border-right:  solid #DFDFDF 1px;
+}
+.num button{
+    height: 30px;
+    width: 30px;
+}
+.sum{
+    margin-left: 70px;
+}
+.delete{
+    height: 50px;
+    line-height:50px;
+    margin-right: 50px;
+}
+
+.all{
+    font-size: 30px;
+    height: 100px;
+    line-height: 100px;
+}
+.all a{
+    border-radius: 10px;
+    padding: 0 15px;
+    display: inline-block;
+    height: 70px;
+    line-height: 70px;
+    background-color: red;
+    text-align: center;
+}

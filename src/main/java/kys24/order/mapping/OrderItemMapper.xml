@@ -120,7 +120,7 @@
   <select id="countById" parameterType="java.lang.String" resultType="java.lang.Integer">
     SELECT count(*) FROM tb_orderitem WHERE order_id = #{orderId,jdbcType=VARCHAR}
   </select>
-  <select id="querySumCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  <select id="querySumCount" parameterType="java.lang.Integer" resultType="java.lang.Object">
     SELECT SUM(count) FROM tb_orderitem WHERE commodity_id = #{commodityId,jdbcType=INTEGER}
   </select>
 </mapper>

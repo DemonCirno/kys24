@@ -58,7 +58,7 @@ public class OrderItemServiceImpl implements IOrderItemService{
      * @return
      */
     @Override
-    public Integer querySumCount(Integer commodityid) {
+    public Object querySumCount(Integer commodityid) {
         return orderItemMapper.querySumCount(commodityid);
     }
 }

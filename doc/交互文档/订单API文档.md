@@ -54,35 +54,71 @@
  }
   ```
 
-- ### `GET`   	`/pay/order/{orderid}`	根据订单ID查询订单[先登录]
+- ### `GET`   	`/pay/order/{orderid}`	根据订单ID查询订单
  ##### Responses 
   ###### Example Value:   /pay/order/6d9f0d91e22d
   ```
-    {
-      "code": 200,
-      "message": "6d9f0d91e22d号订单信息",
-      "data": {
-        "orderId": "6d9f0d91e22d",
-        "userId": 1127,
-        "orderAddress": "绥化",
-        "status": 0,
-        "totalCount": 1,
-        "totalPrice": 666,
-        "createTime": 1495444473000,
-        "updateTime": 1495444473000,
-        "orderItems": [
-          {
-            "orderitemId": 12,
-            "orderId": "6d9f0d91e22d",
-            "commodityId": 100,
-            "commodityPrice": 666,
-            "count": 1,
-            "createTime": 1495444473000,
-            "updateTime": 1495444473000
-          }
-        ]
-      }
-    }
+   {
+     "code": 200,
+     "message": "ba5e77cf964e号订单信息",
+     "data": {
+       "orderId": "ba5e77cf964e",
+       "userId": 1,
+       "orderAddress": "测试",
+       "status": 0,
+       "totalCount": 10,
+       "totalPrice": 233,
+       "createTime": 1495708469000,
+       "updateTime": 1495708469000,
+       "orderItems": [
+         {
+           "orderitemId": 8,
+           "orderId": "ba5e77cf964e",
+           "commodityId": 66,
+           "commodityPrice": 233.2,
+           "count": 2,
+           "createTime": 1495708469000,
+           "updateTime": 1495708469000
+         },
+         {
+           "orderitemId": 9,
+           "orderId": "ba5e77cf964e",
+           "commodityId": 67,
+           "commodityPrice": 233.2,
+           "count": 3,
+           "createTime": 1495708470000,
+           "updateTime": 1495708470000
+         },
+         {
+           "orderitemId": 10,
+           "orderId": "ba5e77cf964e",
+           "commodityId": 2,
+           "commodityPrice": 233.2,
+           "count": 1,
+           "createTime": 1495708470000,
+           "updateTime": 1495708470000
+         },
+         {
+           "orderitemId": 11,
+           "orderId": "ba5e77cf964e",
+           "commodityId": 68,
+           "commodityPrice": 233.2,
+           "count": 4,
+           "createTime": 1495708470000,
+           "updateTime": 1495708470000
+         },
+         {
+           "orderitemId": 12,
+           "orderId": "ba5e77cf964e",
+           "commodityId": 69,
+           "commodityPrice": 233.2,
+           "count": 5,
+           "createTime": 1495708470000,
+           "updateTime": 1495708470000
+         }
+       ]
+     }
+   }
   ```
 
 ## 订单后台方法 
@@ -93,238 +129,59 @@
  ##### Responses 
   ###### Example Value:   /pay/orders/1
   ```
-  [
-    [
-      {
-        "orderId": "8f7c2a253d59",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495455910000,
-        "updateTime": 1495455910000
-      },
-      {
-        "orderId": "a1adf1af29a8",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448497000,
-        "updateTime": 1495448497000
-      },
-      {
-        "orderId": "410ffee4303f",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448492000,
-        "updateTime": 1495448492000
-      },
-      {
-        "orderId": "411717bd50ed",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448485000,
-        "updateTime": 1495448485000
-      },
-      {
-        "orderId": "19129c6acff4",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448467000,
-        "updateTime": 1495448467000
-      },
-      {
-        "orderId": "bf03358846f0",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448461000,
-        "updateTime": 1495448461000
-      },
-      {
-        "orderId": "43756786b6b3",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448456000,
-        "updateTime": 1495448456000
-      },
-      {
-        "orderId": "1055f08d0032",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448450000,
-        "updateTime": 1495448450000
-      },
-      {
-        "orderId": "3ee899d243ae",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448443000,
-        "updateTime": 1495448443000
-      },
-      {
-        "orderId": "c1ab1b755560",
-        "userId": 1127,
-        "orderAddress": "随意",
-        "status": 0,
-        "totalCount": 233,
-        "totalPrice": 233,
-        "createTime": 1495448430000,
-        "updateTime": 1495448430000
-      }
-    ],
-    {
-      "everyPage": 10,
-      "totalCount": 12,
-      "totalPage": 2,
-      "currentPage": 1,
-      "beginIndex": 0,
-      "hasPrePage": false,
-      "hasNextPage": true
-    }
-  ]
+ [
+   [
+     {
+       "orderId": "ba5e77cf964e",
+       "userId": 1,
+       "orderAddress": "测试",
+       "status": 0,
+       "totalCount": 10,
+       "totalPrice": 233,
+       "createTime": 1495708469000,
+       "updateTime": 1495708469000
+     }
+   ],
+   {
+     "everyPage": 10,
+     "totalCount": 1,
+     "totalPage": 1,
+     "currentPage": 1,
+     "beginIndex": 0,
+     "hasPrePage": false,
+     "hasNextPage": false
+   }
+ ]
   ```
-- ### `GET`   	`/pay/user/{count}`	个人中心（分页）[先登录]
+- ### `GET`   	`/pay/user`	个人中心（分页）
  ##### Parameters
+    userid              用户id
     count               当前页
  ##### Responses 
-  ###### Example Value:   /pay/user/1
+  ###### Example Value:   pay/users?userid=1&count=1
   ```
  {
    "code": 200,
    "message": "个人订单信息",
    "data": [
      {
-       "orderId": "8f7c2a253d59",
-       "userId": 1127,
-       "orderAddress": "随意",
+       "orderId": "ba5e77cf964e",
+       "userId": 1,
+       "orderAddress": "测试",
        "status": 0,
-       "totalCount": 233,
+       "totalCount": 10,
        "totalPrice": 233,
-       "createTime": 1495455910000,
-       "updateTime": 1495455910000
-     },
-     {
-       "orderId": "a1adf1af29a8",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448497000,
-       "updateTime": 1495448497000
-     },
-     {
-       "orderId": "410ffee4303f",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448492000,
-       "updateTime": 1495448492000
-     },
-     {
-       "orderId": "411717bd50ed",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448485000,
-       "updateTime": 1495448485000
-     },
-     {
-       "orderId": "19129c6acff4",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448467000,
-       "updateTime": 1495448467000
-     },
-     {
-       "orderId": "bf03358846f0",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448461000,
-       "updateTime": 1495448461000
-     },
-     {
-       "orderId": "43756786b6b3",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448456000,
-       "updateTime": 1495448456000
-     },
-     {
-       "orderId": "1055f08d0032",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448450000,
-       "updateTime": 1495448450000
-     },
-     {
-       "orderId": "3ee899d243ae",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448443000,
-       "updateTime": 1495448443000
-     },
-     {
-       "orderId": "c1ab1b755560",
-       "userId": 1127,
-       "orderAddress": "随意",
-       "status": 0,
-       "totalCount": 233,
-       "totalPrice": 233,
-       "createTime": 1495448430000,
-       "updateTime": 1495448430000
+       "createTime": 1495708469000,
+       "updateTime": 1495708469000
      },
      {
        "everyPage": 10,
-       "totalCount": 12,
-       "totalPage": 2,
+       "totalCount": 1,
+       "totalPage": 1,
        "currentPage": 1,
        "beginIndex": 0,
        "hasPrePage": false,
-       "hasNextPage": true
+       "hasNextPage": false
      }
    ]
  }

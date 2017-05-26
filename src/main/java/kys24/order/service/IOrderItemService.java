@@ -35,5 +35,6 @@ public interface IOrderItemService {
      * @param commodityid
      * @return
      */
-    Integer querySumCount(Integer commodityid);
+    Object querySumCount(Integer commodityid);
+
 }

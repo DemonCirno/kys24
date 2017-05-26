@@ -28,12 +28,15 @@ public class TestUser {
 	@Test
 	public void test1(){
 
-		for(int i=0;i<100;i++){
+		for(int i = 152000;i<152100;i++){
 			User user = new User();
-			user.setUserName("測試");
-			user.setUserPassword("123456789");
+			user.setUserPhone(i+"");
+			user.setUserName("测试");
+			user.setUserPassword(123456789+"");
+			user.setUserAddress("测试");
+			user.setType("用户");
 			userservice.addUser(user);
-			}
+		}
 	}
 
 	@Test

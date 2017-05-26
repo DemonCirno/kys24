@@ -15,7 +15,6 @@ public class StorageProperties {
 /*
     private String location = this.getClass().getClassLoader().getResource("/").getPath()+"/image";
 */
-
     /**
      * 适合cirno的windows的绝对路径
      */

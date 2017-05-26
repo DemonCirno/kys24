@@ -1,0 +1,49 @@
+body,
+ul,
+li,
+p{
+    margin : 0;
+    padding: 0;
+}
+button{
+    border: none;
+    cursor: pointer;
+}
+img{
+
+}
+a{
+    text-decoration:none;
+    color: black;
+}
+ul{
+    list-style:none;
+}
+.comWidth{
+    margin: 0 auto;
+    width: 1000px;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+/*清除浮动*/
+.clear{
+    zoom: 1;
+}
+.clear:after{
+    clear: both;
+    content:"";
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+.show{
+    display: block;
+}
+.hidden{
+    display: none;
+}

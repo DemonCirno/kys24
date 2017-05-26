@@ -7,6 +7,7 @@ import kys24.order.model.OrderItem;
 import kys24.order.service.IOrderItemService;
 import kys24.order.service.IOrderService;
 import kys24.user.model.User;
+import kys24.user.service.IUserService;
 import kys24.user.utils.Page;
 import kys24.user.utils.PageUtil;
 import org.apache.ibatis.annotations.Param;
@@ -51,33 +52,45 @@ public class OrderController {
      */
     private final IOrderItemService orderItemService;
 
+    /**
+     * 处理用户的业务逻辑
+     */
+    private final IUserService userService;
+
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")
-    public OrderController(IOrderService orderService,IOrderItemService orderItemService){
+    public OrderController(IOrderService orderService,IOrderItemService orderItemService,IUserService userService){
         this.orderService = orderService;
         this.orderItemService = orderItemService;
+        this.userService = userService;
     }
 
     /**
      * 根据订单ID查询订单
      */
     @RequestMapping(value="/order/{orderid}",method = RequestMethod.GET)
-    public RestResult showOrder(HttpServletRequest httpServletRequest,@PathVariable String orderid){
+    public RestResult showOrder(@PathVariable String orderid){
         logger.info("/pay/order?orderid={}:[GET]:(*^__^*) return the order information", orderid);
-        if (httpServletRequest.getSession().getAttribute("user") == null) {
-            return new RestResult<>(400, "用户未登录", null);
-        } else {
+        Integer totalnum = 0;
+        Float totalprice = 0.0f;
+
             OrderResult orderResult = new OrderResult();
             Order order = orderService.queryOrderById(orderid);
             if(order!=null) {
                 List<OrderItem> list = orderItemService.queryOrderItemsById(order.getOrderId());
+                for(OrderItem items:list){
+                    totalnum = totalnum + items.getCount();
+                    totalprice = totalprice + items.getCommodityPrice();
+                }
+                orderResult.setTotalCount(totalnum);
+                orderResult.setTotalPrice(totalprice);
                 BeanUtils.copyProperties(order, orderResult);
                 orderResult.setOrderItems(list);
                 return new RestResult<>(200, orderid + "号订单信息", orderResult);
             }else{
                 return new RestResult<>(407,"订单号不存在",null);
             }
-        }
+
     }
 
     /**
@@ -87,8 +100,8 @@ public class OrderController {
      * 3.更新商品数量
      */
     @RequestMapping(value="/order",method = RequestMethod.POST)
-    public RestResult addOrder(HttpServletRequest httpServletRequest,@Param("address")
-            String address,@Param("totalnum") Integer totalnum,@Param("totalprice") Float totalprice){
+    public RestResult addOrder(HttpServletRequest httpServletRequest,@RequestParam("address") String address,
+                               @RequestParam("totalnum") Integer totalnum,@RequestParam("totalprice") Float totalprice){
         logger.info("/pay/order?address={}&totalnum={}&totalprice={}:[POST]:(*^__^*) return all the commodities information", address,totalnum,totalprice);
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         if (user == null) {
@@ -112,8 +125,7 @@ public class OrderController {
             }else {
                 orderService.addOrder(order,cart);
                 httpSession.removeAttribute("cart");
-                return new RestResult<>(200, "添加订单成功", 1);
-
+                return new RestResult<>(200, "添加订单成功", order.getOrderId());
             }
         }
     }
@@ -172,13 +184,12 @@ public class OrderController {
     /**
      * 个人中心（分页）
      */
-    @RequestMapping(value = "user/{count}",method = RequestMethod.GET)
-    public RestResult myorders(HttpServletRequest httpServletRequest,@PathVariable Integer count){
-        logger.info("/pay/orders?count={}:[GET]:(*^__^*) return user's order information",count);
-        HttpSession httpSession = httpServletRequest.getSession();
-        User user = (User) httpSession.getAttribute("user");
+    @RequestMapping(value = "users",method = RequestMethod.GET)
+    public RestResult myorders(@RequestParam("userid") Integer userid,@RequestParam("count") Integer count){
+        logger.info("/pay/users?count={}:[GET]:(*^__^*) return user's order information",count);
+        User user = userService.selectById(userid);
         if(user == null){
-            return new RestResult<>(400, "用户未登录", null);
+            return new RestResult<>(400, "该用户不存在", null);
         }
         Page page = PageUtil.createPage(EVERYPAGE,orderService.countByuserId(user.getUserId()),count);
         List list = orderService.queryOrderByuserId(user.getUserId(),page);
@@ -187,11 +198,25 @@ public class OrderController {
     }
 
     /**
-     * 查询销量
+     * 批量查询销量
      */
-    @RequestMapping(value = "/goods/{commodityid}",method = RequestMethod.GET)
-    public Integer querycommoditysold(@PathVariable  Integer commodityid){
-        logger.info("/pay/goods?commodityid={}:[GET]:(*^__^*) return the order count information", commodityid);
-        return orderItemService.querySumCount(commodityid);
+    @RequestMapping(value = "/goods",method = RequestMethod.POST)
+    public List querycommoditysold(@RequestBody List<String> list){
+        logger.info("/pay/goods?commodityid={}:[GET]:(*^__^*) return the order count information", list);
+        HashMap<String,Object> map = new HashMap<>();
+        List result = new ArrayList<>();
+        for(String id:list){
+            Integer commodityid = Integer.parseInt(id);
+            Object count = orderItemService.querySumCount(commodityid);
+            if(count == null){
+                map.put("id",commodityid);
+                map.put("num",0);
+            }else{
+                map.put("id",commodityid);
+                map.put("num",count);
+            }
+            result.add(map);
+        }
+        return result;
     }
 }

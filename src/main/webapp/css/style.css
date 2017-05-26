@@ -1,0 +1,234 @@
+
+/*@xboy
+**hot_and_recent
+*/
+.hot_and_recent{
+    width: 19.2%;
+    border: solid #DFDFDF 1px;
+    font-size: 14px;
+}
+.hot_and_recent .title{
+    padding-left: 10px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+
+    border-bottom: solid #DFDFDF 1px;
+}
+.hot_and_recent .contain{
+
+    text-align: center;
+    padding: 5px;
+}
+.hot_and_recent .contain span{
+    font-size: 12px;
+}
+.hot_and_recent .contain div{
+    margin: 5px auto;
+    width: 150px;
+    height: 150px;
+}
+.hot_and_recent .contain img {
+    height: 150px;
+    width: 150px;
+
+}
+.hot_and_recent .contain .red{
+    color: #8fc320;
+}
+.hot_and_recent .contain a{
+    display: inline-block;
+    margin-top: 5px;
+}
+
+
+
+
+
+/*@xboy
+**detail
+*/
+.detail{
+    font-size: 14px;
+    margin-top: 20px;
+}
+/*@xboy
+**detail_left
+*/
+.detail_left{
+    padding-top: 10px;
+    width: 30%;
+}
+.detail_img {
+    /*display: block;*/
+    height: 300px;
+    width: 300px;
+
+}
+
+/*.detail_ul{*/
+    /*position: relative;*/
+    /*margin-top: 20px;*/
+/*}*/
+/*.detail_ul span{*/
+    /*position: absolute;*/
+    /*display: block;*/
+    /*text-align: center;*/
+    /*padding: 12px 0;*/
+    /*width: 15px;*/
+    /*height: 20px;*/
+    /*cursor: pointer;*/
+    /*background-color: #8fc31f;*/
+    /*color: #808080;*/
+    /*border-radius: 3px;*/
+/*}*/
+/*.detail_ul span:hover{*/
+    /*color: #DFDFDF;*/
+    /*background-color: green;*/
+/*}*/
+/*.detail_ul .prev{*/
+    /*top: 0;*/
+    /*left: 0;*/
+/*}*/
+/*.detail_ul .next{*/
+    /*top: 0;*/
+    /*left: 280px;*/
+/*}*/
+/*.detail_ul ul{*/
+    /*width: 260px;*/
+    /*padding:0 20px;*/
+    /*overflow: hidden;*/
+/*}*/
+/*.detail_ul ul li{*/
+    /*display: block;*/
+    /*float: left;*/
+    /*height: 40px;*/
+    /*width: 40px;*/
+    /*margin: 0 4px;*/
+    /*border: solid #DFDFDF 1px;*/
+/*}*/
+/*.detail_ul ul li img{*/
+    /*height: 40px;*/
+    /*width: 40px;*/
+/*}*/
+/*@xboy
+**detail_main
+*/
+.detail_main{
+    width: 48%;
+    margin: 0 10px;
+}
+.detail_main>b{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+}
+.detail_main .price {
+    height: 60px;
+    background-color: #fde5e0;
+    border: dashed #ffcbc4 1px;
+    padding: 5px 0 0 10px;
+    margin-bottom: 10px;
+}
+.detail_main .price b {
+    font-size: 30px;
+    color: #8fc320;
+}
+.detail_main .price .market_price {
+    margin-left: 130px;
+}
+.detail_main .integral{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+}
+.detail_main .integral span{
+    color: #8fc320;
+    font-size: 16px;
+}
+.detail_main .spec{
+    margin-top: 30px;
+    padding-left: 15px;
+}
+.detail_main .spec p {
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+.detail_main .spec p a,
+.detail_main .spec p input{
+    display: inline-block;
+    height: 28px;
+    width: 50px;
+
+}
+.detail_main .spec p a{
+    margin-right: 10px;
+    text-align: center;
+    border: solid #DFDFDF 1px;
+}
+.detail_main .spec p input{
+    text-align: center;
+    height: 30px;
+    border: none;
+    border-left: solid #DFDFDF 1px;
+    border-right:  solid #DFDFDF 1px;
+}
+.detail_main .spec p span{
+    display: inline-block;
+    border: solid #DFDFDF 1px;
+}
+.detail_main .spec p button{    
+    height: 30px;
+    width: 30px;
+}
+
+.detail_main .submit{
+    padding-left: 28px;
+}
+.detail_main .submit button{
+    margin-top: 20px;
+    border-radius: 5px;
+    height: 40px;
+    width: 35%;
+    padding: 0 30px;
+    background-color: #8fc320;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-left: 20px;
+}
+
+
+/*@xboy
+**goods
+*/
+.goods{
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+.goods p{
+    padding-left: 10px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    border: solid 1px #DFDFDF;
+}
+.item{
+    text-align: center;
+    float: left;
+
+    padding: 10px;
+    width: 178px;
+}
+.item img{
+    height: 178px;
+    width: 178px;
+    border: solid 1px #DFDFDF;
+    padding: 0;
+}
+.item span{
+    display: inline-block;
+    margin-top: 10px;
+    color: #8fc320;
+}

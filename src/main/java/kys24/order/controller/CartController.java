@@ -7,11 +7,9 @@ import kys24.order.dto.RestResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
@@ -21,7 +19,7 @@ import java.util.*;
  * @author cirno
  *
  */
-
+@CrossOrigin
 @RequestMapping("/cart")
 @RestController
 public class CartController {
@@ -56,7 +54,7 @@ public class CartController {
             HttpSession httpSession = httpServletRequest.getSession();
             HashMap<String,Integer> cart = (HashMap<String, Integer>) httpSession.getAttribute("cart");
             if(cart==null){
-                return new RestResult(402,"购物车为空",null);
+                return new RestResult<>(402,"购物车为空",null);
             }else{
                 /**
                  * 获取entry实体对象，通过实体获取键和值
@@ -73,14 +71,12 @@ public class CartController {
                         list.add(cartItems);
                     }
                 }
-                return new RestResult(200,"购物车信息",list);
+                return new RestResult<>(200,"购物车信息",list);
             }
         }
     }
     /**
      * 添加商品到购物车
-     *
-     * @return
      */
     @RequestMapping(value = "/commodities/{commodityid}", method = RequestMethod.POST)
     public RestResult add(HttpServletRequest httpServletRequest, @PathVariable Integer commodityid) {
@@ -120,8 +116,6 @@ public class CartController {
 
     /**
      * 删除购物车商品
-     *
-     * @return
      */
     @RequestMapping(value = "/commodities/{commodityid}", method = RequestMethod.DELETE)
     public RestResult delete(HttpServletRequest httpServletRequest,@PathVariable Integer commodityid) {
@@ -159,7 +153,7 @@ public class CartController {
      * 修改购物车中商品数量
      */
     @RequestMapping(value = "/commodities", method = RequestMethod.PUT)
-    public RestResult update(HttpServletRequest httpServletRequest,Integer commodityid,Integer num) {
+    public RestResult update(HttpServletRequest httpServletRequest, @RequestParam("commodityid") Integer commodityid, @RequestParam("num") Integer num) {
         logger.info("/cart/commodities[PUT]");
         if (httpServletRequest.getSession().getAttribute("user") == null) {
             return new RestResult<>(400, "用户未登录", null);
@@ -185,7 +179,7 @@ public class CartController {
                         cart.put(id, num);
                     }
                     httpServletRequest.getSession().setAttribute("cart", cart);
-                    return new RestResult(200,"购物车商品信息",cart);
+                    return new RestResult<>(200,"购物车商品信息",cart);
                 }
             }
         }

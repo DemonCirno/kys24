@@ -50,6 +50,19 @@ public class Testgoods {
         System.out.println(c.getCommodityName());
     }
 
+    @Test
+    public void test_5(){
+        for(int i=0;i<100;i++) {
+            Commodity c = new Commodity();
+            c.setCommodityLeavenum(34);
+            c.setCommodityName("鸡心");
+            c.setCommodityBrand(3);
+            c.setCommodityPrice(233.2f);
+            c.setCommodityVariety(2);
+            commodityDao.insertCommodity(c);
+        }
+    }
+
   /*  private CommodityService commodityService;
     @Autowired
     @SuppressWarnings("SpringJavaAutowiringInspection")

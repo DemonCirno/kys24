@@ -21,5 +21,6 @@ public interface OrderItemMapper {
 
     int countById(String orderid);
 
-    int querySumCount(Integer commodityid);
+    Object querySumCount(Integer commodityid);
+
 }

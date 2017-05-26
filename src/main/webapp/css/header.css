@@ -1,0 +1,116 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#header{
+	margin: 0 auto;
+	height: 194px;
+	/* width: 100%; */
+	/* margin: 0 auto; */
+	/* background: red; */
+}
+#header-top{
+	height: 30px;
+	border-bottom: 1px #8fc320 solid ;
+	font-family: DengXian Light;
+	font-size: 15px;
+	line-height: 30px;
+	color: #000000;
+}
+#header-top a{
+	margin-left: 5px;
+	text-decoration: none;
+	color: #000000;
+}
+#header-top a:hover{
+	color: #BFB7B7;
+}
+#header-top-left{
+	left: 13%;
+	position: relative;
+	display: inline;
+}
+#header-top-right{
+	display: inline;
+	left: 33%;
+	position: relative;
+}
+#header-main{
+	height: 125px;
+	border-bottom: 2px #8fc320 solid ;
+}
+#header-main-logo{
+	width: 150px;
+	height: 65px;
+	float: left;
+	margin-left: 180px;
+	margin-top: 40px;
+}
+#header-main-search{
+	border: 2px #8fc320 solid;
+	width:524px;
+	top: 40px;
+	position: relative;
+	height: 40px;
+	margin: 0 auto ;
+}
+#search{
+	border:none;
+	outline: none;
+	width: 445px;
+	height: 40px;
+	font-size: 25px;
+
+	float: right;
+}
+.search{
+	border: none;
+	outline: none;
+	cursor: pointer;
+	height: 42px;
+	font-family: DengXian Regular;
+	font-size: 25px;
+	color: #ffffff;
+	width: 74px;
+	background: #8fc31f;
+
+}
+#header-main-buycar{
+	float: right;
+	position: relative;
+	right: 220px;
+}
+#header-bottom{
+	height: 39px;
+	background:#8fc31f;
+	margin: 0 auto;
+}
+#header-bottom-main{
+	width: 1000px;
+}
+#header-bottom-main ul{
+	margin-left: 220px;
+}
+#header-bottom-main li{
+	
+	float: left;
+
+	list-style: none;
+	text-align: center;
+width: 170px;
+	height: 35px;
+	line-height: 39px;
+	background: #8fc31f;
+	font-family: MicrosoftYaHei [Regular];
+	font-size: 17px;
+	color:#010101;
+	cursor: pointer;
+	}
+	.header-bottom-main a{
+			
+	}
+#header-bottom-main li:hover{
+	background: #67900e;
+	transition: 1s;
+	color: #fff;
+}
